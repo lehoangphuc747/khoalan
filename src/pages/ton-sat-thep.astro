@@ -59,116 +59,122 @@ import '../styles/global.css';
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Tôn Đông Á -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+        <div onclick="openModal('ton-dong-a')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
           <div class="h-64 relative overflow-hidden">
             <img src="/src/images/tôn-đông-á.jpg" alt="Tôn Đông Á" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Tôn Đông Á</h3>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Tôn Đông Á</h3>
             <p class="text-gray-600 mb-4">Tôn thương hiệu Đông Á uy tín, chất lượng cao, bảo hành chính hãng.</p>
             <ul class="text-sm text-gray-600 mb-4 space-y-1">
               <li>• Thương hiệu uy tín</li>
               <li>• Chống ăn mòn tốt</li>
               <li>• Bảo hành chính hãng</li>
             </ul>
-            <button onclick="openModal('ton-dong-a')" class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
+            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              👆 Nhấn để xem chi tiết
+            </div>
           </div>
         </div>
 
         <!-- Tôn Hoa Sen -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+        <div onclick="openModal('ton-hoa-sen')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
           <div class="h-64 relative overflow-hidden">
             <img src="/src/images/tôn-hoa-sen.jpg" alt="Tôn Hoa Sen" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Tôn Hoa Sen</h3>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Tôn Hoa Sen</h3>
             <p class="text-gray-600 mb-4">Tôn Hoa Sen chất lượng cao, độ bền vượt trội, giá cả hợp lý.</p>
             <ul class="text-sm text-gray-600 mb-4 space-y-1">
               <li>• Thép mạ kẽm</li>
               <li>• Chống rỉ sét</li>
               <li>• Đa dạng kích thước</li>
             </ul>
-            <button onclick="openModal('ton-hoa-sen')" class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
+            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              👆 Nhấn để xem chi tiết
+            </div>
           </div>
         </div>
 
         <!-- Sắt Hộp -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+        <div onclick="openModal('sat-hop')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
           <div class="h-64 relative overflow-hidden">
             <img src="/src/images/sắt-hộp.png" alt="Sắt hộp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Sắt Hộp</h3>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Sắt Hộp</h3>
             <p class="text-gray-600 mb-4">Sắt hộp vuông, chữ nhật chất lượng cao cho khung nhà kính, công trình.</p>
             <ul class="text-sm text-gray-600 mb-4 space-y-1">
               <li>• Kích thước: 20x20 - 150x150</li>
               <li>• Độ dày: 1.2 - 6.0mm</li>
               <li>• Độ bền cao</li>
             </ul>
-            <button onclick="openModal('sat-hop')" class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
+            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              👆 Nhấn để xem chi tiết
+            </div>
           </div>
         </div>
 
         <!-- Sắt Nhà Kính -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+        <div onclick="openModal('sat-nha-kinh')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
           <div class="h-64 relative overflow-hidden">
             <img src="/src/images/sắt-nhà-kính.png" alt="Sắt nhà kính" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Sắt Nhà Kính</h3>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Sắt Nhà Kính</h3>
             <p class="text-gray-600 mb-4">Khung sắt chuyên dụng cho nhà kính, chống ăn mòn, bền bỉ với thời tiết.</p>
             <ul class="text-sm text-gray-600 mb-4 space-y-1">
               <li>• Mạ kẽm chống rỉ</li>
               <li>• Thiết kế chuyên dụng</li>
               <li>• Lắp đặt dễ dàng</li>
             </ul>
-            <button onclick="openModal('sat-nha-kinh')" class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
+            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              👆 Nhấn để xem chi tiết
+            </div>
           </div>
         </div>
 
         <!-- Sắt Uốn -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+        <div onclick="openModal('sat-uon')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
           <div class="h-64 relative overflow-hidden">
             <img src="/src/images/sắt-uốn.jpg" alt="Sắt uốn" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Sắt Uốn</h3>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Sắt Uốn</h3>
             <p class="text-gray-600 mb-4">Dịch vụ uốn sắt theo yêu cầu, chính xác, nhanh chóng.</p>
             <ul class="text-sm text-gray-600 mb-4 space-y-1">
               <li>• Uốn theo thiết kế</li>
               <li>• Độ chính xác cao</li>
               <li>• Thời gian nhanh</li>
             </ul>
-            <button onclick="openModal('sat-uon')" class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
+            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              👆 Nhấn để xem chi tiết
+            </div>
           </div>
         </div>
 
         <!-- Lưới Chắn Côn Trùng -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+        <div onclick="openModal('luoi-chan-con-trung')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
           <div class="h-64 relative overflow-hidden">
             <img src="/src/images/lưới-chắn-côn-trùng.jpg" alt="Lưới chắn côn trùng" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
           </div>
           <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Lưới Chắn Côn Trùng</h3>
+            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Lưới Chắn Côn Trùng</h3>
             <p class="text-gray-600 mb-4">Lưới chống côn trùng cho nhà kính, vườn rau, bảo vệ cây trồng hiệu quả.</p>
             <ul class="text-sm text-gray-600 mb-4 space-y-1">
               <li>• Mesh size đa dạng</li>
               <li>• Chống UV</li>
               <li>• Thông gió tốt</li>
             </ul>
-            <button onclick="openModal('luoi-chan-con-trung')" class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
+            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              👆 Nhấn để xem chi tiết
+            </div>
           </div>
         </div>
 
