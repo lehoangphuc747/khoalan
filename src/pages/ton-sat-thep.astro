@@ -3,9 +3,81 @@ import MainLayout from '../layouts/MainLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CTA from '../components/CTA.astro';
+import ProductCard from '../components/ProductCard.astro';
+import ProductModal from '../components/ProductModal.astro';
+
+// Không cần import hình ảnh nữa, sử dụng đường dẫn public
 
 // Import CSS toàn cục
 import '../styles/global.css';
+
+// Dữ liệu sản phẩm với thông tin đồng bộ
+const products = [
+  {
+    id: 'ton-dong-a',
+    title: 'Tôn Đông Á',
+    image: '/images/ton-da.jpg',
+    description: 'Tôn thương hiệu Đông Á uy tín, chất lượng cao, bảo hành chính hãng.',
+    features: ['Thương hiệu uy tín', 'Chống ăn mòn tốt', 'Bảo hành chính hãng'],
+    hasRealImage: true
+  },
+  {
+    id: 'ton-hoa-sen',
+    title: 'Tôn Hoa Sen',
+    image: '/images/ton-hs.jpg',
+    description: 'Tôn Hoa Sen chất lượng cao, độ bền vượt trội, giá cả hợp lý.',
+    features: ['Thép mạ kẽm', 'Chống rỉ sét', 'Đa dạng kích thước'],
+    hasRealImage: true
+  },
+  {
+    id: 'sat-hop',
+    title: 'Sắt Hộp',
+    image: '/images/sat-hop.png',
+    description: 'Sắt hộp vuông, chữ nhật chất lượng cao cho khung nhà kính, công trình.',
+    features: ['Kích thước: 20x20 - 150x150', 'Độ dày: 1.2 - 6.0mm', 'Độ bền cao'],
+    hasRealImage: true
+  },
+  {
+    id: 'sat-nha-kinh',
+    title: 'Sắt Nhà Kính',
+    image: '/images/sat-nha-kinh.png',
+    description: 'Khung sắt chuyên dụng cho nhà kính, chống ăn mòn, bền bỉ với thời tiết.',
+    features: ['Mạ kẽm chống rỉ', 'Thiết kế chuyên dụng', 'Lắp đặt dễ dàng'],
+    hasRealImage: true
+  },
+  {
+    id: 'sat-uon',
+    title: 'Sắt Uốn',
+    image: '/images/sat-uon.jpg',
+    description: 'Dịch vụ uốn sắt theo yêu cầu, chính xác, nhanh chóng.',
+    features: ['Uốn theo thiết kế', 'Độ chính xác cao', 'Thời gian nhanh'],
+    hasRealImage: true
+  },
+  {
+    id: 'luoi-chan-con-trung',
+    title: 'Lưới Chắn Côn Trùng',
+    image: '/images/luoi-chan-con-trung.jpg',
+    description: 'Lưới chống côn trùng cho nhà kính, vườn rau, bảo vệ cây trồng hiệu quả.',
+    features: ['Mesh size đa dạng', 'Chống UV', 'Thông gió tốt'],
+    hasRealImage: true
+  },
+  {
+    id: 'sat-cam-coc-bong',
+    title: 'Sắt Cắm Cọc Bông',
+    image: '/images/sat-cam-coc-bong.jpg',
+    description: 'Cọc sắt chuyên dụng cho trồng bông, hoa màu, chắc chắn và bền bỉ.',
+    features: ['Chuyên dụng nông nghiệp', 'Chống gỉ sét', 'Nhiều kích cỡ'],
+    hasRealImage: true
+  },
+  {
+    id: 'nilon-nha-kinh',
+    title: 'Nilon Nhà Kính',
+    image: '/images/nilon-nha-kinh.jpg',
+    description: 'Màng nilon chuyên dụng cho nhà kính, chống UV, giữ nhiệt tốt.',
+    features: ['Độ trong suốt cao', 'Chống tia UV', 'Bền với thời tiết'],
+    hasRealImage: true
+  }
+];
 ---
 
 <MainLayout title="Tôn Sắt Thép Chất Lượng Cao - Khoa Lan">
@@ -23,10 +95,10 @@ import '../styles/global.css';
           Cung cấp đa dạng các loại tôn sắt thép với chất lượng vượt trội, giá cả cạnh tranh nhất thị trường
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#products" class="bg-khoalan-yellow text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+          <a href="#products" class="bg-khoalan-yellow text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
             Xem Sản Phẩm
           </a>
-          <a href="tel:0867555211" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
+          <a href="/contact" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
             Liên Hệ Ngay
           </a>
         </div>
@@ -58,220 +130,16 @@ import '../styles/global.css';
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Tôn Đông Á -->
-        <div onclick="openModal('ton-dong-a')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/tôn-đông-á.jpg" alt="Tôn Đông Á" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Tôn Đông Á</h3>
-            <p class="text-gray-600 mb-4">Tôn thương hiệu Đông Á uy tín, chất lượng cao, bảo hành chính hãng.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Thương hiệu uy tín</li>
-              <li>• Chống ăn mòn tốt</li>
-              <li>• Bảo hành chính hãng</li>
-            </ul>
-            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              👆 Nhấn để xem chi tiết
-            </div>
-          </div>
-        </div>
-
-        <!-- Tôn Hoa Sen -->
-        <div onclick="openModal('ton-hoa-sen')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/tôn-hoa-sen.jpg" alt="Tôn Hoa Sen" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Tôn Hoa Sen</h3>
-            <p class="text-gray-600 mb-4">Tôn Hoa Sen chất lượng cao, độ bền vượt trội, giá cả hợp lý.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Thép mạ kẽm</li>
-              <li>• Chống rỉ sét</li>
-              <li>• Đa dạng kích thước</li>
-            </ul>
-            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              👆 Nhấn để xem chi tiết
-            </div>
-          </div>
-        </div>
-
-        <!-- Sắt Hộp -->
-        <div onclick="openModal('sat-hop')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/sắt-hộp.png" alt="Sắt hộp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Sắt Hộp</h3>
-            <p class="text-gray-600 mb-4">Sắt hộp vuông, chữ nhật chất lượng cao cho khung nhà kính, công trình.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Kích thước: 20x20 - 150x150</li>
-              <li>• Độ dày: 1.2 - 6.0mm</li>
-              <li>• Độ bền cao</li>
-            </ul>
-            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              👆 Nhấn để xem chi tiết
-            </div>
-          </div>
-        </div>
-
-        <!-- Sắt Nhà Kính -->
-        <div onclick="openModal('sat-nha-kinh')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/sắt-nhà-kính.png" alt="Sắt nhà kính" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Sắt Nhà Kính</h3>
-            <p class="text-gray-600 mb-4">Khung sắt chuyên dụng cho nhà kính, chống ăn mòn, bền bỉ với thời tiết.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Mạ kẽm chống rỉ</li>
-              <li>• Thiết kế chuyên dụng</li>
-              <li>• Lắp đặt dễ dàng</li>
-            </ul>
-            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              👆 Nhấn để xem chi tiết
-            </div>
-          </div>
-        </div>
-
-        <!-- Sắt Uốn -->
-        <div onclick="openModal('sat-uon')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/sắt-uốn.jpg" alt="Sắt uốn" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Sắt Uốn</h3>
-            <p class="text-gray-600 mb-4">Dịch vụ uốn sắt theo yêu cầu, chính xác, nhanh chóng.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Uốn theo thiết kế</li>
-              <li>• Độ chính xác cao</li>
-              <li>• Thời gian nhanh</li>
-            </ul>
-            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              👆 Nhấn để xem chi tiết
-            </div>
-          </div>
-        </div>
-
-        <!-- Lưới Chắn Côn Trùng -->
-        <div onclick="openModal('luoi-chan-con-trung')" class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/lưới-chắn-côn-trùng.jpg" alt="Lưới chắn côn trùng" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">Lưới Chắn Côn Trùng</h3>
-            <p class="text-gray-600 mb-4">Lưới chống côn trùng cho nhà kính, vườn rau, bảo vệ cây trồng hiệu quả.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Mesh size đa dạng</li>
-              <li>• Chống UV</li>
-              <li>• Thông gió tốt</li>
-            </ul>
-            <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              👆 Nhấn để xem chi tiết
-            </div>
-          </div>
-        </div>
-
-        <!-- Sắt Nhà Kính -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/sắt-nhà-kính.png" alt="Sắt nhà kính" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Sắt Nhà Kính</h3>
-            <p class="text-gray-600 mb-4">Khung sắt chuyên dụng cho nhà kính, chống ăn mòn, bền bỉ với thời tiết.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Mạ kẽm chống rỉ</li>
-              <li>• Thiết kế chuyên dụng</li>
-              <li>• Lắp đặt dễ dàng</li>
-            </ul>
-            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
-          </div>
-        </div>
-
-        <!-- Sắt Uốn -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/sắt-uốn.jpg" alt="Sắt uốn" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Sắt Uốn</h3>
-            <p class="text-gray-600 mb-4">Dịch vụ uốn sắt theo yêu cầu, chính xác, nhanh chóng.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Uốn theo thiết kế</li>
-              <li>• Độ chính xác cao</li>
-              <li>• Thời gian nhanh</li>
-            </ul>
-            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
-          </div>
-        </div>
-
-        <!-- Sắt Cắm Cọc Bông -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/sắt-cắm-cọc-bông.jpg" alt="Sắt cắm cọc bông" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Sắt Cắm Cọc Bông</h3>
-            <p class="text-gray-600 mb-4">Cọc sắt chuyên dụng cho trồng bông, hoa màu, chắc chắn và bền bỉ.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Chuyên dụng nông nghiệp</li>
-              <li>• Chống gỉ sét</li>
-              <li>• Nhiều kích cỡ</li>
-            </ul>
-            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
-          </div>
-        </div>
-
-        <!-- Lưới Chắn Côn Trùng -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/lưới-chắn-côn-trùng.jpg" alt="Lưới chắn côn trùng" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Lưới Chắn Côn Trùng</h3>
-            <p class="text-gray-600 mb-4">Lưới chống côn trùng cho nhà kính, vườn rau, bảo vệ cây trồng hiệu quả.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Mesh size đa dạng</li>
-              <li>• Chống UV</li>
-              <li>• Thông gió tốt</li>
-            </ul>
-            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
-          </div>
-        </div>
-
-        <!-- Nilon Nhà Kính -->
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
-          <div class="h-64 relative overflow-hidden">
-            <img src="/src/images/nilon-nhà-kính.jpg" alt="Nilon nhà kính" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-          </div>
-          <div class="p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Nilon Nhà Kính</h3>
-            <p class="text-gray-600 mb-4">Màng nilon chuyên dụng cho nhà kính, chống UV, giữ nhiệt tốt.</p>
-            <ul class="text-sm text-gray-600 mb-4 space-y-1">
-              <li>• Độ trong suốt cao</li>
-              <li>• Chống tia UV</li>
-              <li>• Bền với thời tiết</li>
-            </ul>
-            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
-              Xem Chi Tiết
-            </button>
-          </div>
-        </div>
+        {products.map(product => (
+          <ProductCard 
+            id={product.id}
+            title={product.title}
+            image={product.image}
+            description={product.description}
+            features={product.features}
+            hasRealImage={product.hasRealImage}
+          />
+        ))}
       </div>
     </div>
   </section>
@@ -432,7 +300,7 @@ import '../styles/global.css';
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="text-center">
-          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-blue-900 font-bold text-xl">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-black font-bold text-xl">
             1
           </div>
           <h3 class="text-lg font-bold text-gray-800 mb-2">Liên Hệ Tư Vấn</h3>
@@ -440,7 +308,7 @@ import '../styles/global.css';
         </div>
 
         <div class="text-center">
-          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-blue-900 font-bold text-xl">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-black font-bold text-xl">
             2
           </div>
           <h3 class="text-lg font-bold text-gray-800 mb-2">Báo Giá</h3>
@@ -448,7 +316,7 @@ import '../styles/global.css';
         </div>
 
         <div class="text-center">
-          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-blue-900 font-bold text-xl">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-black font-bold text-xl">
             3
           </div>
           <h3 class="text-lg font-bold text-gray-800 mb-2">Đặt Hàng</h3>
@@ -456,7 +324,7 @@ import '../styles/global.css';
         </div>
 
         <div class="text-center">
-          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-blue-900 font-bold text-xl">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-black font-bold text-xl">
             4
           </div>
           <h3 class="text-lg font-bold text-gray-800 mb-2">Giao Hàng</h3>
@@ -469,264 +337,6 @@ import '../styles/global.css';
   <CTA />
   <Footer />
 
-  <!-- Product Detail Modal -->
-  <div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-      <div class="flex justify-between items-center p-6 border-b">
-        <h3 id="modalTitle" class="text-2xl font-bold text-gray-800"></h3>
-        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-3xl">&times;</button>
-      </div>
-      <div class="p-6">
-        <div id="modalImage" class="w-full h-64 bg-gray-200 rounded-lg mb-6 overflow-hidden">
-          <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
-        </div>
-        <div id="modalContent">
-          <!-- Content will be dynamically loaded -->
-        </div>
-        <div class="mt-6 flex gap-4">
-          <a href="tel:0867555211" class="bg-khoalan-yellow text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors flex-1 text-center">
-            Gọi Ngay: 0867 555 211
-          </a>
-          <a href="https://zalo.me/0867555211" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex-1 text-center">
-            Chat Zalo
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Product data
-    const productData = {
-      'ton-dong-a': {
-        title: 'Tôn Đông Á',
-        image: '/src/images/tôn-đông-á.jpg',
-        description: 'Tôn thép mạ kẽm thương hiệu Đông Á - một trong những thương hiệu tôn uy tín hàng đầu tại Việt Nam.',
-        specs: [
-          'Độ dày: 0.35mm - 0.8mm',
-          'Khổ rộng: 914mm, 1000mm',
-          'Chiều dài: 2-12m (theo yêu cầu)',
-          'Màu sắc: Đa dạng theo catalog',
-          'Bảo hành: 10-15 năm chính hãng'
-        ],
-        features: [
-          'Chống ăn mòn, chống rỉ sét vượt trội',
-          'Độ bền màu cao, không bạc màu',
-          'Chịu lực tốt, độ bám dính cao',
-          'Thân thiện với môi trường',
-          'Dễ thi công, lắp đặt'
-        ],
-        applications: [
-          'Mái nhà dân dụng và công nghiệp',
-          'Vách ngăn, cửa cuốn',
-          'Hàng rào, kho xưởng',
-          'Nhà tiền chế'
-        ],
-        price: 'Giá: Liên hệ để có báo giá tốt nhất'
-      },
-      'ton-hoa-sen': {
-        title: 'Tôn Hoa Sen',
-        image: '/src/images/tôn-hoa-sen.jpg',
-        description: 'Tôn Hoa Sen - thương hiệu hàng đầu Việt Nam với chất lượng được kiểm định nghiêm ngặt.',
-        specs: [
-          'Độ dày: 0.35mm - 0.8mm',
-          'Khổ rộng: 914mm, 1000mm',
-          'Chiều dài: 2-12m',
-          'Lớp mạ: 120-275g/m²',
-          'Tiêu chuẩn: TCVN, JIS'
-        ],
-        features: [
-          'Thép mạ kẽm chất lượng cao',
-          'Chống rỉ sét xuất sắc',
-          'Đa dạng màu sắc',
-          'Giá thành hợp lý',
-          'Dễ gia công, thi công'
-        ],
-        applications: [
-          'Mái nhà, kho xưởng',
-          'Công trình dân dụng',
-          'Nhà máy, xí nghiệp',
-          'Hàng rào, vách ngăn'
-        ],
-        price: 'Giá: Liên hệ để có ưu đãi tốt nhất'
-      },
-             'sat-hop': {
-         title: 'Sắt Hộp',
-         image: '/src/images/sắt-hộp.png',
-         description: 'Sắt hộp vuông và chữ nhật chất lượng cao, được sử dụng rộng rãi trong xây dựng và khung nhà kính.',
-         specs: [
-           'Kích thước: 20x20mm đến 150x150mm',
-           'Độ dày: 1.2mm - 6.0mm',
-           'Chiều dài: 6m, 12m (tiêu chuẩn)',
-           'Vật liệu: Thép carbon Q235',
-           'Bề mặt: Mạ kẽm hoặc sơn'
-         ],
-         features: [
-           'Độ bền cơ học cao',
-           'Chống ăn mòn tốt',
-           'Dễ hàn, gia công',
-           'Kích thước chuẩn xác',
-           'Giá cả cạnh tranh'
-         ],
-         applications: [
-           'Khung nhà kính, nhà lưới',
-           'Kết cấu thép nhẹ',
-           'Hàng rào, cổng',
-           'Khung máy, giàn giáo',
-           'Nội thất, trang trí'
-         ],
-         price: 'Giá: Từ 15.000đ/kg (tùy kích thước)'
-       },
-       'sat-nha-kinh': {
-         title: 'Sắt Nhà Kính',
-         image: '/src/images/sắt-nhà-kính.png',
-         description: 'Khung sắt chuyên dụng cho nhà kính với lớp mạ kẽm chống ăn mòn, thiết kế tối ưu cho điều kiện môi trường ẩm ướt.',
-         specs: [
-           'Tiết diện: Chữ C, chữ U, ống tròn',
-           'Độ dày: 1.5mm - 3.0mm',
-           'Chiều dài: 6m, 12m',
-           'Lớp mạ kẽm: 350g/m²',
-           'Tiêu chuẩn: TCVN 1651:1985'
-         ],
-         features: [
-           'Mạ kẽm nóng chống rỉ sét',
-           'Thiết kế chuyên dụng cho nhà kính',
-           'Kết cấu chắc chắn, bền bỉ',
-           'Dễ lắp đặt và tháo rời',
-           'Chịu được điều kiện thời tiết khắc nghiệt'
-         ],
-         applications: [
-           'Khung chính nhà kính',
-           'Hệ thống giàn giáo nông nghiệp',
-           'Nhà lưới trồng rau',
-           'Kho bảo quản nông sản',
-           'Chuồng trại chăn nuôi'
-         ],
-         price: 'Giá: Liên hệ để có ưu đãi tốt nhất'
-       },
-       'sat-uon': {
-         title: 'Sắt Uốn',
-         image: '/src/images/sắt-uốn.jpg',
-         description: 'Dịch vụ uốn sắt chuyên nghiệp theo yêu cầu với máy móc hiện đại, đảm bảo độ chính xác cao.',
-         specs: [
-           'Vật liệu: Thép tròn, thép hộp, thép góc',
-           'Đường kính: Φ6 - Φ32mm',
-           'Góc uốn: 30° - 180°',
-           'Độ chính xác: ±2mm',
-           'Công suất: 500 sản phẩm/ngày'
-         ],
-         features: [
-           'Máy uốn CNC chính xác cao',
-           'Uốn theo bản vẽ kỹ thuật',
-           'Không làm hỏng cấu trúc thép',
-           'Thời gian thực hiện nhanh',
-           'Giá cả cạnh tranh'
-         ],
-         applications: [
-           'Móng neo nhà kính',
-           'Khung cửa, cửa sổ',
-           'Tay vịn, lan can',
-           'Linh kiện máy móc',
-           'Đồ nội thất kim loại'
-         ],
-         price: 'Giá: Từ 5.000đ/sản phẩm'
-       },
-       'luoi-chan-con-trung': {
-         title: 'Lưới Chắn Côn Trùng',
-         image: '/src/images/lưới-chắn-côn-trùng.jpg',
-         description: 'Lưới chắn côn trùng chất lượng cao, bảo vệ cây trồng khỏi sâu bệnh, tăng năng suất nông nghiệp.',
-         specs: [
-           'Mesh size: 20, 32, 40, 50 lỗ/inch',
-           'Khổ rộng: 1m, 1.5m, 2m, 3m, 4m',
-           'Chiều dài: 100m/cuộn',
-           'Chất liệu: PE (Polyethylene)',
-           'Màu sắc: Trắng, xanh lá'
-         ],
-         features: [
-           'Chống tia UV hiệu quả',
-           'Thông thoáng, không ảnh hưởng ánh sáng',
-           'Chống thấm nước nhẹ',
-           'Độ bền cao, tuổi thọ 3-5 năm',
-           'Dễ cắt, may và lắp đặt'
-         ],
-         applications: [
-           'Che phủ nhà kính, nhà lưới',
-           'Bảo vệ vườn rau, hoa màu',
-           'Chắn côn trùng cho ao nuôi',
-           'Che nắng cho gia súc',
-           'Lưới an toàn công trình'
-         ],
-         price: 'Giá: Từ 8.000đ/m² (tùy mesh size)'
-       }
-    };
-
-    function openModal(productId) {
-      const modal = document.getElementById('productModal');
-      const product = productData[productId];
-      
-      if (product) {
-        document.getElementById('modalTitle').textContent = product.title;
-        document.getElementById('modalImg').src = product.image;
-        document.getElementById('modalImg').alt = product.title;
-        
-        const content = `
-          <div class="space-y-6">
-            <div>
-              <p class="text-gray-700 text-lg mb-4">${product.description}</p>
-            </div>
-            
-            <div>
-              <h4 class="text-xl font-bold text-gray-800 mb-3">Thông Số Kỹ Thuật</h4>
-              <ul class="grid grid-cols-1 gap-2">
-                ${product.specs.map(spec => `<li class="flex items-center text-gray-600"><span class="w-2 h-2 bg-khoalan-yellow rounded-full mr-3"></span>${spec}</li>`).join('')}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 class="text-xl font-bold text-gray-800 mb-3">Tính Năng Nổi Bật</h4>
-              <ul class="grid grid-cols-1 gap-2">
-                ${product.features.map(feature => `<li class="flex items-center text-gray-600"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>${feature}</li>`).join('')}
-              </ul>
-            </div>
-            
-            <div>
-              <h4 class="text-xl font-bold text-gray-800 mb-3">Ứng Dụng</h4>
-              <ul class="grid grid-cols-1 gap-2">
-                ${product.applications.map(app => `<li class="flex items-center text-gray-600"><span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>${app}</li>`).join('')}
-              </ul>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg">
-              <p class="text-lg font-semibold text-blue-900">${product.price}</p>
-              <p class="text-sm text-gray-600 mt-1">Miễn phí tư vấn và báo giá chi tiết</p>
-            </div>
-          </div>
-        `;
-        
-        document.getElementById('modalContent').innerHTML = content;
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeModal() {
-      const modal = document.getElementById('productModal');
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Close modal when clicking outside
-    document.getElementById('productModal').addEventListener('click', function(e) {
-      if (e.target === this) {
-        closeModal();
-      }
-    });
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
-    });
-  </script>
+  <!-- Product Modal Component -->
+  <ProductModal />
 </MainLayout> 

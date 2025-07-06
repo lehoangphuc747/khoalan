@@ -1,0 +1,281 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Import CSS toàn cục
+import '../styles/global.css';
+
+// Lấy tất cả tin tức không phải draft
+const allNews = await getCollection('news', ({ data }) => {
+  return data.draft !== true;
+});
+
+// Sắp xếp theo ngày mới nhất
+const sortedNews = allNews.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+
+// Tin nổi bật
+const featuredNews = sortedNews.filter(post => post.data.featured);
+
+// Tin thường
+const regularNews = sortedNews.filter(post => !post.data.featured);
+
+// Danh mục
+const categories = {
+  'thong-bao': '📢 Thông Báo',
+  'khuyến-mai': '🎉 Khuyến Mãi', 
+  'san-pham-moi': '🆕 Sản Phẩm Mới',
+  'su-kien': '🎊 Sự Kiện',
+  'huong-dan': '📚 Hướng Dẫn'
+};
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('vi-VN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+}
+---
+
+<MainLayout title="Tin Tức - Khoa Lan">
+  <Header />
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20">
+    <div class="absolute inset-0 bg-black opacity-20"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          Tin Tức <span class="text-khoalan-yellow">Khoa Lan</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          Cập nhật thông tin mới nhất về sản phẩm, khuyến mãi và kiến thức chuyên ngành tôn sắt thép
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section class="bg-gray-100 py-4">
+    <div class="container mx-auto px-4">
+      <nav class="text-sm">
+        <a href="/" class="text-blue-600 hover:text-blue-800">Trang chủ</a>
+        <span class="mx-2 text-gray-500">/</span>
+        <span class="text-gray-700">Tin tức</span>
+      </nav>
+    </div>
+  </section>
+
+  <main class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+      
+      <!-- Bộ Lọc Danh Mục -->
+      <section class="mb-8">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-lg font-semibold text-gray-800 mb-4">Lọc theo danh mục:</h3>
+          <div class="flex flex-wrap gap-3">
+            <button 
+              class="filter-btn active px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+              data-category="all"
+            >
+              Tất cả
+            </button>
+            {Object.entries(categories).map(([key, label]) => (
+              <button 
+                class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors"
+                data-category={key}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- Danh Sách Tin Tức Thống Nhất -->
+      <section>
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+          📰 Tin Tức & Khuyến Mãi
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="news-grid">
+          {sortedNews.map((post) => (
+            <article 
+              class="news-item bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+              data-category={post.data.category}
+              onclick={`window.location.href='/news/${post.id}'`}
+            >
+              <div class="h-48 bg-gray-200 overflow-hidden flex items-center justify-center image-container">
+                {post.data.image ? (
+                  <>
+                    <img 
+                      src={post.data.image} 
+                      alt={post.data.imageAlt || post.data.title}
+                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-300 post-image"
+                    />
+                    <div class="w-full h-full bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center fallback-content" style="display: none;">
+                      <div class="text-center">
+                        <h3 class="text-4xl font-black text-white mb-2 tracking-wider">KHOA LAN</h3>
+                        <p class="text-blue-100 text-sm font-medium">TÔN SẮT THÉP</p>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center">
+                    <div class="text-center">
+                      <h3 class="text-4xl font-black text-white mb-2 tracking-wider">KHOA LAN</h3>
+                      <p class="text-blue-100 text-sm font-medium">TÔN SẮT THÉP</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                    {categories[post.data.category]}
+                  </span>
+                  {post.data.featured && (
+                    <span class="bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full animate-pulse">
+                      🔥 HOT
+                    </span>
+                  )}
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3 line-clamp-2 hover:text-blue-600 transition-colors">
+                  {post.data.title}
+                </h3>
+                <p class="text-gray-600 line-clamp-3">
+                  {post.data.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {sortedNews.length === 0 && (
+          <div class="text-center py-12">
+            <p class="text-gray-500 text-lg">Chưa có tin tức nào được đăng.</p>
+          </div>
+        )}
+      </section>
+
+      <!-- CTA Section -->
+      <section class="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg p-8 text-center">
+        <h3 class="text-2xl font-bold mb-4">Bạn Cần Tư Vấn Thêm?</h3>
+        <p class="text-lg mb-6">
+          Liên hệ với chúng tôi để được tư vấn miễn phí về các sản phẩm tôn sắt thép phù hợp nhất
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="tel:0867555211" 
+            class="bg-khoalan-yellow text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
+          >
+            📞 Gọi Ngay: 0867 555 211
+          </a>
+          <a 
+            href="/contact" 
+            class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors"
+          >
+            💬 Liên Hệ Tư Vấn
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Lọc tin tức theo danh mục
+  document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const newsItems = document.querySelectorAll('.news-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+        
+        // Cập nhật active button
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-blue-600', 'text-white');
+          btn.classList.add('bg-gray-200', 'text-gray-700');
+        });
+        
+        this.classList.add('active', 'bg-blue-600', 'text-white');
+        this.classList.remove('bg-gray-200', 'text-gray-700');
+        
+        // Lọc tin tức
+        newsItems.forEach(item => {
+          const itemCategory = item.getAttribute('data-category');
+          const htmlItem = item as HTMLElement;
+          
+          if (category === 'all' || itemCategory === category) {
+            htmlItem.style.display = 'block';
+            item.classList.add('animate-fadeIn');
+          } else {
+            htmlItem.style.display = 'none';
+            item.classList.remove('animate-fadeIn');
+          }
+        });
+      });
+    });
+
+    // Handle image load errors
+    const postImages = document.querySelectorAll('.post-image');
+    postImages.forEach(img => {
+      img.addEventListener('error', function() {
+        const container = this.closest('.image-container');
+        const fallback = container?.querySelector('.fallback-content');
+        if (fallback) {
+          this.style.display = 'none';
+          (fallback as HTMLElement).style.display = 'flex';
+        }
+      });
+    });
+  });
+</script> 

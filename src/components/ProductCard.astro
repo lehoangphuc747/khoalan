@@ -1,0 +1,60 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  image: string;
+  description: string;
+  features: string[];
+  hasRealImage?: boolean;
+}
+
+const { id, title, image, description, features, hasRealImage = false } = Astro.props;
+---
+
+<div 
+  onclick={`openModal('${id}')`} 
+  class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer transform hover:scale-105"
+>
+  <div class="h-64 relative overflow-hidden">
+    <img 
+      src={image} 
+      alt={title} 
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+    />
+    <div class="w-full h-full bg-gradient-to-br from-gray-300 to-gray-500 flex items-center justify-center absolute inset-0" style="display: none;">
+      <span class="text-white text-lg font-bold">{title}</span>
+    </div>
+    <!-- Badge cho sản phẩm có hình thật -->
+    {hasRealImage && (
+      <div class="absolute top-3 right-3 bg-khoalan-yellow text-black px-2 py-1 rounded-full text-xs font-semibold">
+        ✨ Hình thật
+      </div>
+    )}
+  </div>
+  
+  <div class="p-6">
+    <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+      {title}
+    </h3>
+    <p class="text-gray-600 mb-4 line-clamp-2">
+      {description}
+    </p>
+    <ul class="text-sm text-gray-600 mb-4 space-y-1">
+      {features.slice(0, 3).map(feature => (
+        <li>• {feature}</li>
+      ))}
+    </ul>
+    <div class="text-center text-sm text-blue-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      👆 Nhấn để xem chi tiết
+    </div>
+  </div>
+</div>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style> 

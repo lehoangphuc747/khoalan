@@ -1,0 +1,498 @@
+---
+// ProductModal component để hiển thị thông tin chi tiết sản phẩm
+---
+
+<!-- Product Detail Modal -->
+<div id="productModal" class="fixed inset-0 backdrop-blur-sm bg-opacity-20 hidden z-50 flex items-center justify-center p-4">
+  <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="flex justify-between items-center p-6 border-b bg-gray-50">
+      <h3 id="modalTitle" class="text-2xl font-bold text-gray-800 flex items-center">
+        <span class="mr-3">📦</span>
+        <span id="modalTitleText"></span>
+      </h3>
+      <button 
+        onclick="closeModal()" 
+        class="text-gray-500 hover:text-gray-700 text-3xl hover:bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center transition-colors"
+      >
+        &times;
+      </button>
+    </div>
+    
+    <div class="p-6">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Hình ảnh sản phẩm -->
+        <div id="modalImage" class="space-y-4">
+          <div class="w-full h-80 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+            <img id="modalImg" src="" alt="" class="w-full h-full object-cover">
+          </div>
+          <!-- Gallery nhỏ nếu có nhiều hình -->
+          <div id="modalGallery" class="hidden grid grid-cols-4 gap-2">
+            <!-- Các hình nhỏ sẽ được thêm bằng JavaScript -->
+          </div>
+        </div>
+        
+        <!-- Thông tin chi tiết -->
+        <div class="space-y-6">
+          <div id="modalContent">
+            <!-- Content sẽ được load động -->
+          </div>
+          
+          <!-- Liên hệ và mua hàng -->
+          <div class="bg-gradient-to-r from-blue-50 to-yellow-50 p-6 rounded-lg border border-blue-100">
+            <h4 class="text-lg font-bold text-gray-800 mb-4 text-center flex items-center justify-center gap-2">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/800px-Icon_of_Zalo.svg.png" alt="Zalo" class="w-6 h-6">
+            Liên Hệ Ngay
+          </h4>
+            <div class="grid grid-cols-2 gap-4">
+              <a 
+                href="tel:0867555211" 
+                class="bg-khoalan-yellow text-black px-4 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors text-center flex items-center justify-center"
+              >
+                📞 Gọi Ngay
+                <br><span class="text-sm">0867 555 211</span>
+              </a>
+              <a 
+                href="https://zalo.me/0867555211" 
+                target="_blank" 
+                class="bg-green-600 text-white px-4 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors text-center flex items-center justify-center flex-col"
+              >
+                <div class="flex items-center gap-2">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/800px-Icon_of_Zalo.svg.png" alt="Zalo" class="w-4 h-4">
+                  Chat Zalo
+                </div>
+                <span class="text-sm">Tư vấn miễn phí</span>
+              </a>
+            </div>
+            <div class="text-center mt-4">
+              <p class="text-sm text-gray-600">
+                🎁 <strong>Ưu đãi đặc biệt:</strong> Miễn phí tư vấn + Báo giá tốt nhất + Giao hàng nhanh
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Thông tin bổ sung -->
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+          <div class="flex items-center mb-2">
+            <span class="text-2xl mr-2">✅</span>
+            <h5 class="font-bold text-green-800">Cam Kết Chất Lượng</h5>
+          </div>
+          <p class="text-sm text-green-700">Sản phẩm chính hãng, bảo hành dài hạn</p>
+        </div>
+        
+        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+          <div class="flex items-center mb-2">
+            <span class="text-2xl mr-2">🚚</span>
+            <h5 class="font-bold text-blue-800">Giao Hàng Nhanh</h5>
+          </div>
+          <p class="text-sm text-blue-700">Giao hàng toàn quốc trong 24-48h</p>
+        </div>
+        
+        <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+          <div class="flex items-center mb-2">
+            <span class="text-2xl mr-2">💰</span>
+            <h5 class="font-bold text-orange-800">Giá Cạnh Tranh</h5>
+          </div>
+          <p class="text-sm text-orange-700">Giá tốt nhất thị trường + ưu đãi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    // Product data với thông tin chi tiết hơn
+  const productData = {
+    'ton-dong-a': {
+      title: 'Tôn Đông Á',
+      image: '/images/ton-da.jpg',
+      description: 'Tôn thép mạ kẽm thương hiệu Đông Á - một trong những thương hiệu tôn uy tín hàng đầu tại Việt Nam với chất lượng được kiểm định nghiêm ngặt.',
+      detailedDescription: 'Tôn Đông Á được sản xuất theo công nghệ hiện đại từ Nhật Bản, sử dụng thép cán nóng chất lượng cao và lớp mạ kẽm đạt tiêu chuẩn quốc tế. Sản phẩm có độ bền vượt trội, chống ăn mòn xuất sắc và được bảo hành chính hãng lên đến 15 năm.',
+      specs: [
+        '📏 Độ dày: 0.35mm - 0.8mm',
+        '📐 Khổ rộng: 914mm, 1000mm', 
+        '📏 Chiều dài: 2-12m (theo yêu cầu)',
+        '🎨 Màu sắc: Đa dạng theo catalog Đông Á',
+        '🛡️ Bảo hành: 10-15 năm chính hãng',
+        '⚖️ Trọng lượng: 3.5-7.5 kg/m²',
+        '🌡️ Chịu nhiệt: -40°C đến +120°C'
+      ],
+      features: [
+        '🛡️ Chống ăn mòn, chống rỉ sét vượt trội',
+        '🎨 Độ bền màu cao, không bạc màu theo thời gian',
+        '💪 Chịu lực tốt, độ bám dính cao',
+        '🌱 Thân thiện với môi trường, có thể tái chế',
+        '🔧 Dễ thi công, lắp đặt và bảo trì',
+        '☀️ Chống tia UV, không bị biến dạng',
+        '💧 Chống thấm nước tuyệt đối'
+      ],
+      applications: [
+        '🏠 Mái nhà dân dụng và biệt thự',
+        '🏭 Nhà xưởng, kho bãi công nghiệp',
+        '🚪 Vách ngăn, cửa cuốn, cửa kho',
+        '🏗️ Hàng rào, tường bao che',
+        '🏘️ Nhà tiền chế, container',
+        '🌾 Kho nông sản, chuồng trại'
+      ],
+      price: 'Giá: Từ 85.000đ/m² - Liên hệ để có báo giá tốt nhất',
+      warranty: '15 năm bảo hành chính hãng',
+      origin: 'Xuất xứ: Việt Nam (Công nghệ Nhật Bản)'
+    },
+    'ton-hoa-sen': {
+      title: 'Tôn Hoa Sen',
+      image: '/images/ton-hs.jpg',
+      description: 'Tôn Hoa Sen - thương hiệu số 1 Việt Nam với hơn 25 năm kinh nghiệm, chất lượng được kiểm định nghiêm ngặt theo tiêu chuẩn quốc tế.',
+      detailedDescription: 'Tôn Hoa Sen được sản xuất trên dây chuyền công nghệ tiên tiến từ Châu Âu, sử dụng thép cán nguội chất lượng cao và lớp mạ kẽm-nhôm-magie độc quyền. Sản phẩm có khả năng chống ăn mòn gấp 3-5 lần so với tôn thường.',
+      specs: [
+        '📏 Độ dày: 0.35mm - 0.8mm',
+        '📐 Khổ rộng: 914mm, 1000mm',
+        '📏 Chiều dài: 2-12m',
+        '⚖️ Lớp mạ: 120-275g/m²',
+        '📋 Tiêu chuẩn: TCVN, JIS, ASTM',
+        '🎨 Màu sắc: 15+ màu chuẩn + màu theo yêu cầu',
+        '🌡️ Chịu nhiệt: -45°C đến +130°C'
+      ],
+      features: [
+        '🥇 Thép mạ kẽm-nhôm-magie độc quyền',
+        '⭐ Chống rỉ sét xuất sắc gấp 3-5 lần',
+        '🌈 Đa dạng màu sắc, không phai màu',
+        '💰 Giá thành hợp lý, tối ưu chi phí',
+        '🔧 Dễ gia công, thi công và vận chuyển',
+        '📱 Tra cứu sản phẩm qua app Hoa Sen',
+        '🏆 Thương hiệu uy tín số 1 Việt Nam'
+      ],
+      applications: [
+        '🏠 Mái nhà, villa cao cấp',
+        '🏭 Kho xưởng, nhà máy lớn',
+        '🏬 Trung tâm thương mại, siêu thị',
+        '🏥 Bệnh viện, trường học',
+        '🚧 Hàng rào, vách ngăn công trình',
+        '🌾 Nhà kho nông nghiệp'
+      ],
+      price: 'Giá: Từ 78.000đ/m² - Liên hệ để có ưu đãi tốt nhất',
+      warranty: '12 năm bảo hành chính hãng',
+      origin: 'Xuất xứ: Việt Nam (Công nghệ Châu Âu)'
+    },
+    'sat-hop': {
+      title: 'Sắt Hộp',
+      image: '/images/sat-hop.png',
+      description: 'Sắt hộp vuông và chữ nhật chất lượng cao, được sử dụng rộng rãi trong xây dựng khung nhà kính, công trình dân dụng và công nghiệp.',
+      detailedDescription: 'Sắt hộp được sản xuất từ thép carbon chất lượng cao Q235, Q345 theo tiêu chuẩn JIS G3466. Bề mặt được mạ kẽm nóng hoặc sơn chống rỉ, đảm bảo độ bền cao trong môi trường khắc nghiệt.',
+      specs: [
+        '📐 Kích thước: 20x20mm đến 200x200mm',
+        '📏 Độ dày: 1.2mm - 8.0mm',
+        '📏 Chiều dài: 6m, 9m, 12m (tiêu chuẩn)',
+        '⚙️ Vật liệu: Thép carbon Q235, Q345',
+        '🛡️ Bề mặt: Mạ kẽm nóng hoặc sơn phủ',
+        '📋 Tiêu chuẩn: JIS G3466, TCVN 1651',
+        '⚖️ Trọng lượng: 0.6-25 kg/m'
+      ],
+      features: [
+        '💪 Độ bền cơ học cao, chịu lực tốt',
+        '🛡️ Chống ăn mòn, chống rỉ sét',
+        '🔧 Dễ hàn, cắt và gia công',
+        '📐 Kích thước chuẩn xác, độ phẳng cao',
+        '💰 Giá cả cạnh tranh, tiết kiệm chi phí',
+        '♻️ Có thể tái chế 100%',
+        '🏗️ Phù hợp mọi loại công trình'
+      ],
+      applications: [
+        '🌿 Khung nhà kính, nhà lưới nông nghiệp',
+        '🏗️ Kết cấu thép nhẹ, khung công trình',
+        '🚧 Hàng rào, cổng, cửa sắt',
+        '⚙️ Khung máy móc, giàn giáo',
+        '🏠 Nội thất, trang trí kiến trúc',
+        '🚗 Khung xe tải, container'
+      ],
+      price: 'Giá: Từ 15.000đ/kg - Tùy kích thước và số lượng',
+      warranty: '6 tháng bảo hành chất lượng',
+      origin: 'Xuất xứ: Việt Nam, Trung Quốc, Thái Lan'
+    },
+    'sat-nha-kinh': {
+      title: 'Sắt Nhà Kính',
+      image: '/images/sat-nha-kinh.png',
+      description: 'Khung sắt chuyên dụng cho nhà kính với lớp mạ kẽm chống ăn mòn, thiết kế tối ưu cho điều kiện môi trường ẩm ướt và áp lực gió.',
+      detailedDescription: 'Sắt nhà kính được thiết kế chuyên biệt cho môi trường nông nghiệp với độ ẩm cao. Khung được mạ kẽm nóng 350g/m² và có thiết kế đặc biệt để dễ dàng lắp đặt màng phủ, hệ thống tưới và thông gió.',
+      specs: [
+        '🔧 Tiết diện: Chữ C, chữ U, ống tròn',
+        '📏 Độ dày: 1.5mm - 3.0mm',
+        '📏 Chiều dài: 6m, 9m, 12m',
+        '🛡️ Lớp mạ kẽm: 350-450g/m²',
+        '📋 Tiêu chuẩn: TCVN 1651:1985',
+        '🌡️ Chịu nhiệt: -30°C đến +60°C',
+        '💨 Chịu gió: Cấp 10-12'
+      ],
+      features: [
+        '🛡️ Mạ kẽm nóng chống rỉ sét tuyệt đối',
+        '🌿 Thiết kế chuyên dụng cho nhà kính',
+        '🏗️ Kết cấu chắc chắn, bền bỉ với thời tiết',
+        '🔧 Dễ lắp đặt và tháo rời khi cần',
+        '🌪️ Chịu được điều kiện thời tiết khắc nghiệt',
+        '💧 Chống ăn mòn trong môi trường ẩm ướt',
+        '⚖️ Trọng lượng nhẹ, tiết kiệm chi phí vận chuyển'
+      ],
+      applications: [
+        '🍅 Khung chính nhà kính trồng rau',
+        '🌸 Hệ thống giàn giáo trồng hoa',
+        '🥬 Nhà lưới trồng rau sạch',
+        '🌾 Kho bảo quản nông sản',
+        '🐄 Chuồng trại chăn nuôi hiện đại',
+        '🌱 Vườn ươm cây giống'
+      ],
+      price: 'Giá: Từ 18.000đ/kg - Liên hệ để có ưu đãi tốt nhất',
+      warranty: '3 năm bảo hành mạ kẽm',
+      origin: 'Xuất xứ: Việt Nam'
+    },
+    'sat-uon': {
+      title: 'Sắt Uốn',
+      image: '/images/sat-uon.jpg',
+      description: 'Dịch vụ uốn sắt chuyên nghiệp theo yêu cầu với máy móc CNC hiện đại, đảm bảo độ chính xác cao và thời gian thực hiện nhanh chóng.',
+      detailedDescription: 'Khoa Lan cung cấp dịch vụ uốn sắt chuyên nghiệp với máy CNC và đội ngũ thợ lành nghề. Chúng tôi có thể uốn các loại thép tròn, thép hộp, thép góc theo bản vẽ kỹ thuật với độ chính xác cao.',
+      specs: [
+        '🔧 Vật liệu: Thép tròn, thép hộp, thép góc',
+        '📐 Đường kính: Φ6 - Φ50mm',
+        '📐 Góc uốn: 15° - 180°',
+        '📏 Độ chính xác: ±1mm',
+        '⏱️ Thời gian: 30-60 phút/sản phẩm',
+        '🔢 Công suất: 500+ sản phẩm/ngày',
+        '📋 Tiêu chuẩn: Theo bản vẽ kỹ thuật'
+      ],
+      features: [
+        '🤖 Máy uốn CNC chính xác cao',
+        '📐 Uốn theo bản vẽ kỹ thuật chi tiết',
+        '🔧 Không làm hỏng cấu trúc kim loại',
+        '⚡ Thời gian thực hiện nhanh chóng',
+        '💰 Giá cả cạnh tranh, hợp lý',
+        '👷 Đội ngũ thợ lành nghề, kinh nghiệm',
+        '📋 Nhận gia công theo yêu cầu đặc biệt'
+      ],
+      applications: [
+        '⚓ Móng neo, chốt cố định nhà kính',
+        '🚪 Khung cửa, khung cửa sổ',
+        '🛡️ Tay vịn, lan can an toàn',
+        '⚙️ Linh kiện máy móc công nghiệp',
+        '🪑 Đồ nội thất kim loại cao cấp',
+        '🎨 Trang trí kiến trúc nghệ thuật'
+      ],
+      price: 'Giá: Từ 5.000đ/sản phẩm - Tùy độ phức tạp',
+      warranty: '6 tháng bảo hành chất lượng gia công',
+      origin: 'Dịch vụ: Tại xưởng Khoa Lan'
+    },
+    'luoi-chan-con-trung': {
+      title: 'Lưới Chắn Côn Trùng',
+      image: '/images/luoi-chan-con-trung.jpg',
+      description: 'Lưới chắn côn trùng chất lượng cao chuyên dùng cho nông nghiệp, bảo vệ cây trồng khỏi sâu bệnh và tăng năng suất hiệu quả.',
+      detailedDescription: 'Lưới chắn côn trùng được sản xuất từ chất liệu PE (Polyethylene) cao cấp, có khả năng chống tia UV và độ bền cao. Sản phẩm có nhiều mesh size khác nhau phù hợp với từng loại cây trồng và môi trường.',
+      specs: [
+        '🕳️ Mesh size: 20, 32, 40, 50, 60 lỗ/inch',
+        '📐 Khổ rộng: 1m, 1.5m, 2m, 3m, 4m, 6m',
+        '📏 Chiều dài: 50m, 100m/cuộn',
+        '🧪 Chất liệu: PE (Polyethylene) virgin',
+        '🎨 Màu sắc: Trắng, xanh lá, xám',
+        '☀️ Chống UV: 3-5 năm',
+        '⚖️ Trọng lượng: 80-150g/m²'
+      ],
+      features: [
+        '☀️ Chống tia UV hiệu quả, bền với thời tiết',
+        '🌬️ Thông thoáng, không ảnh hưởng ánh sáng tự nhiên',
+        '💧 Chống thấm nước nhẹ, thoát nước tốt',
+        '⏳ Độ bền cao, tuổi thọ 3-5 năm',
+        '✂️ Dễ cắt, may và lắp đặt',
+        '🌱 An toàn với cây trồng và môi trường',
+        '💰 Giá thành hợp lý, tiết kiệm chi phí'
+      ],
+      applications: [
+        '🍅 Che phủ nhà kính trồng rau',
+        '🌸 Bảo vệ vườn hoa, cây cảnh',
+        '🐟 Chắn côn trùng cho ao nuôi tôm cá',
+        '🐄 Che nắng, chắn muỗi cho gia súc',
+        '🏗️ Lưới an toàn công trình xây dựng',
+        '🌾 Bảo vệ lúa, ngô khỏi chim ăn'
+      ],
+      price: 'Giá: Từ 8.000đ/m² - Tùy mesh size và số lượng',
+      warranty: '2 năm bảo hành chất lượng',
+      origin: 'Xuất xứ: Việt Nam, Thái Lan'
+    },
+    'sat-cam-coc-bong': {
+      title: 'Sắt Cắm Cọc Bông',
+      image: '/images/sat-cam-coc-bong.jpg',
+      description: 'Cọc sắt chuyên dụng cho trồng bông, hoa màu với thiết kế đặc biệt, chắc chắn và bền bỉ trong môi trường nông nghiệp.',
+      detailedDescription: 'Cọc sắt cắm bông được thiết kế đặc biệt với đầu nhọn dễ cắm và móc cong để buộc dây. Sản phẩm được mạ kẽm chống rỉ, phù hợp với điều kiện đất ẩm và thời tiết khắc nghiệt.',
+      specs: [
+        '📏 Chiều dài: 1.2m, 1.5m, 1.8m, 2.0m',
+        '📐 Đường kính: Φ8, Φ10, Φ12mm',
+        '🔧 Thiết kế: Đầu nhọn + móc cong',
+        '🛡️ Bề mặt: Mạ kẽm hoặc sơn chống rỉ',
+        '⚖️ Trọng lượng: 0.5-1.2 kg/cây',
+        '📋 Tiêu chuẩn: Chuyên dùng nông nghiệp',
+        '🌡️ Chịu nhiệt: -20°C đến +50°C'
+      ],
+      features: [
+        '🌱 Chuyên dụng cho nông nghiệp, trồng trọt',
+        '🛡️ Chống gỉ sét, bền trong đất ẩm',
+        '📏 Nhiều kích cỡ phù hợp từng loại cây',
+        '🔧 Thiết kế thông minh, dễ sử dụng',
+        '💪 Chắc chắn, chịu lực kéo cao',
+        '💰 Giá thành hợp lý cho nông dân',
+        '♻️ Có thể tái sử dụng nhiều vụ'
+      ],
+      applications: [
+        '🌸 Trồng bông, cotton thương mại',
+        '🌻 Hoa hướng dương, hoa màu',
+        '🍅 Cà chua, ớt trong nhà kính',
+        '🥒 Dưa chuột, mướp leo giàn',
+        '🌿 Cây thuốc lá, cây công nghiệp',
+        '🌾 Lúa, ngô cần giằng chống đổ'
+      ],
+      price: 'Giá: Từ 12.000đ/cây - Tùy kích thước',
+      warranty: '1 năm bảo hành chất lượng',
+      origin: 'Xuất xứ: Việt Nam'
+    },
+    'nilon-nha-kinh': {
+      title: 'Nilon Nhà Kính',
+      image: '/images/nilon-nha-kinh.jpg',
+      description: 'Màng nilon chuyên dụng cho nhà kính với khả năng chống UV, giữ nhiệt tốt và độ trong suốt cao, tối ưu cho sự phát triển của cây trồng.',
+      detailedDescription: 'Nilon nhà kính được sản xuất từ nhựa PE virgin chất lượng cao, có khả năng chống tia UV và giữ nhiệt độ ổn định. Sản phẩm có độ trong suốt cao, cho phép ánh sáng tự nhiên đi qua hiệu quả.',
+      specs: [
+        '📏 Độ dày: 150, 180, 200 micron',
+        '📐 Khổ rộng: 4m, 6m, 8m, 10m, 12m',
+        '📏 Chiều dài: 50m, 100m/cuộn',
+        '🧪 Chất liệu: PE virgin + UV stabilizer',
+        '🌡️ Giữ nhiệt: 85-90% hiệu suất',
+        '☀️ Cho ánh sáng qua: 88-92%',
+        '⏳ Tuổi thọ: 3-4 năm'
+      ],
+      features: [
+        '☀️ Độ trong suốt cao 88-92%',
+        '🛡️ Chống tia UV, không bị phân hủy',
+        '🌡️ Bền với thời tiết, giữ nhiệt tốt',
+        '💧 Chống thấm nước tuyệt đối',
+        '🌬️ Chịu gió tốt, không dễ rách',
+        '🔥 Chống cháy lan, an toàn',
+        '♻️ Thân thiện môi trường, có thể tái chế'
+      ],
+      applications: [
+        '🍅 Phủ nhà kính trồng rau sạch',
+        '🌸 Nhà kính trồng hoa cao cấp',
+        '🌱 Vườn ươm cây giống',
+        '🍄 Nhà trồng nấm công nghệ cao',
+        '🐟 Che phủ ao nuôi tôm cá',
+        '🌾 Bảo quản nông sản sau thu hoạch'
+      ],
+      price: 'Giá: Từ 25.000đ/m² - Tùy độ dày và khổ rộng',
+      warranty: '2 năm bảo hành chống UV',
+      origin: 'Xuất xứ: Việt Nam, Thái Lan, Israel'
+    }
+  };
+
+  function openModal(productId) {
+    const modal = document.getElementById('productModal');
+    const product = productData[productId];
+    
+    if (product && modal) {
+      document.getElementById('modalTitleText').textContent = product.title;
+      const modalImg = document.getElementById('modalImg');
+      if (modalImg) {
+        modalImg.src = product.image;
+        modalImg.alt = product.title;
+      }
+      
+      const content = `
+        <div class="space-y-6">
+          <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+            <p class="text-gray-700 text-base leading-relaxed">${product.detailedDescription}</p>
+          </div>
+          
+          <div>
+            <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+              📋 Thông Số Kỹ Thuật
+            </h4>
+            <div class="grid grid-cols-1 gap-3">
+              ${product.specs.map(spec => `
+                <div class="flex items-start p-3 bg-gray-50 rounded-lg border">
+                  <span class="text-sm text-gray-700">${spec}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+              ⭐ Tính Năng Nổi Bật
+            </h4>
+            <div class="grid grid-cols-1 gap-2">
+              ${product.features.map(feature => `
+                <div class="flex items-start p-2">
+                  <span class="text-sm text-gray-700">${feature}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+              🏗️ Ứng Dụng
+            </h4>
+            <div class="grid grid-cols-1 gap-2">
+              ${product.applications.map(app => `
+                <div class="flex items-start p-2">
+                  <span class="text-sm text-gray-700">${app}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+          
+          <div class="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-lg border border-yellow-200">
+            <div class="space-y-3">
+              <p class="text-lg font-bold text-orange-800">${product.price}</p>
+              <p class="text-sm text-gray-600"><strong>🛡️ ${product.warranty}</strong></p>
+              <p class="text-sm text-gray-600"><strong>🌍 ${product.origin}</strong></p>
+              <p class="text-xs text-gray-500">💡 Giá có thể thay đổi theo thời điểm và số lượng đặt hàng</p>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      const modalContent = document.getElementById('modalContent');
+      if (modalContent) {
+        modalContent.innerHTML = content;
+      }
+      
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('productModal');
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  // Close modal when clicking outside
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('productModal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeModal();
+        }
+      });
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  });
+
+  // Make functions globally available
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+</script> 

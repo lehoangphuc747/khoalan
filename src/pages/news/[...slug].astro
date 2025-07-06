@@ -1,0 +1,458 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import MainLayout from '../../layouts/MainLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+// Import CSS toàn cục
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const newsEntries = await getCollection('news', ({ data }) => {
+    return data.draft !== true;
+  });
+  
+  return newsEntries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'news'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Danh mục
+const categories = {
+  'thong-bao': '📢 Thông Báo',
+  'khuyến-mai': '🎉 Khuyến Mãi', 
+  'san-pham-moi': '🆕 Sản Phẩm Mới',
+  'su-kien': '🎊 Sự Kiện',
+  'huong-dan': '📚 Hướng Dẫn'
+};
+
+function formatDate(date: Date) {
+  return new Intl.DateTimeFormat('vi-VN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(date);
+}
+
+// Lấy bài viết liên quan (cùng danh mục, trừ bài hiện tại)
+const relatedNews = await getCollection('news', ({ data, id }) => {
+  return data.draft !== true && 
+         data.category === entry.data.category && 
+         id !== entry.id;
+});
+
+const sortedRelatedNews = relatedNews
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 3);
+
+// Meta data cho SEO
+const seoTitle = entry.data.title + ' - Tin Tức Khoa Lan';
+const seoDescription = entry.data.description;
+const seoImage = entry.data.image || '/images/default-news.jpg';
+---
+
+<MainLayout title={seoTitle} description={seoDescription}>
+  <Fragment slot="head">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
+    <meta property="og:image" content={seoImage} />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content={entry.data.pubDate.toISOString()} />
+    <meta property="article:author" content={entry.data.author} />
+    <meta property="article:section" content={categories[entry.data.category]} />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seoTitle} />
+    <meta name="twitter:description" content={seoDescription} />
+    <meta name="twitter:image" content={seoImage} />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "headline": entry.data.title,
+          "description": entry.data.description,
+          "image": seoImage,
+          "author": {
+            "@type": "Organization",
+            "name": entry.data.author
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Khoa Lan",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "/logo.png"
+            }
+          },
+          "datePublished": entry.data.pubDate.toISOString(),
+          "dateModified": entry.data.updatedDate ? entry.data.updatedDate.toISOString() : entry.data.pubDate.toISOString()
+        })
+      }
+    </script>
+  </Fragment>
+
+  <Header />
+
+  <!-- Breadcrumb -->
+  <section class="bg-gray-100 py-4">
+    <div class="container mx-auto px-4">
+      <nav class="text-sm">
+        <a href="/" class="text-blue-600 hover:text-blue-800">Trang chủ</a>
+        <span class="mx-2 text-gray-500">/</span>
+        <a href="/news" class="text-blue-600 hover:text-blue-800">Tin tức</a>
+        <span class="mx-2 text-gray-500">/</span>
+        <span class="text-gray-700">{entry.data.title}</span>
+      </nav>
+    </div>
+  </section>
+
+  <main class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <article class="max-w-4xl mx-auto">
+        
+        <!-- Header -->
+        <header class="mb-8">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded">
+              {categories[entry.data.category]}
+            </span>
+            {entry.data.featured && (
+              <span class="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
+                Tin nổi bật
+              </span>
+            )}
+          </div>
+          
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+            {entry.data.title}
+          </h1>
+          
+          <p class="text-xl text-gray-600 mb-6 leading-relaxed">
+            {entry.data.description}
+          </p>
+          
+          <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 pb-6 border-b border-gray-200">
+            <div class="flex items-center gap-2">
+              <span class="font-semibold">Tác giả:</span>
+              <span>{entry.data.author}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-semibold">Ngày đăng:</span>
+              <time datetime={entry.data.pubDate.toISOString()}>
+                {formatDate(new Date(entry.data.pubDate))}
+              </time>
+            </div>
+            {entry.data.updatedDate && (
+              <div class="flex items-center gap-2">
+                <span class="font-semibold">Cập nhật:</span>
+                <time datetime={entry.data.updatedDate.toISOString()}>
+                  {formatDate(new Date(entry.data.updatedDate))}
+                </time>
+              </div>
+            )}
+          </div>
+        </header>
+
+        <!-- Featured Image -->
+        {entry.data.image && (
+          <div class="mb-8">
+            <img 
+              src={entry.data.image} 
+              alt={entry.data.imageAlt || entry.data.title}
+              class="w-full h-auto rounded-lg shadow-lg"
+            />
+            {entry.data.imageAlt && (
+              <p class="text-sm text-gray-500 mt-2 text-center italic">
+                {entry.data.imageAlt}
+              </p>
+            )}
+          </div>
+        )}
+
+        <!-- Content -->
+        <div class="prose prose-lg max-w-none">
+          <Content />
+        </div>
+
+        <!-- Tags -->
+        {entry.data.tags && entry.data.tags.length > 0 && (
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800 mb-3">Từ khóa:</h3>
+            <div class="flex flex-wrap gap-2">
+              {entry.data.tags.map((tag) => (
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-200 transition-colors">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Share Buttons -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">Chia sẻ bài viết:</h3>
+          <div class="flex gap-3">
+            <a 
+              href={`https://www.facebook.com/sharer/sharer.php?u=${Astro.url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors text-sm"
+            >
+              📘 Facebook
+            </a>
+            <a 
+              href={`https://twitter.com/intent/tweet?url=${Astro.url}&text=${encodeURIComponent(entry.data.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-sky-500 text-white px-4 py-2 rounded hover:bg-sky-600 transition-colors text-sm"
+            >
+              🐦 Twitter
+            </a>
+            <button 
+              onclick="copyLink()"
+              class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors text-sm"
+            >
+              🔗 Sao chép link
+            </button>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="mt-12 pt-8 border-t border-gray-200">
+          <div class="flex flex-col sm:flex-row justify-between gap-4">
+            <a 
+              href="/news" 
+              class="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-2"
+            >
+              ← Quay lại trang tin tức
+            </a>
+            <a 
+              href="/contact" 
+              class="bg-khoalan-yellow text-black px-6 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition-colors text-center"
+            >
+              💬 Liên hệ tư vấn
+            </a>
+          </div>
+        </div>
+
+      </article>
+
+      <!-- Related News -->
+      {sortedRelatedNews.length > 0 && (
+        <section class="mt-16 pt-12 border-t border-gray-200">
+          <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+            📰 Tin Tức Liên Quan
+          </h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sortedRelatedNews.map((post) => (
+              <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 border border-gray-200">
+                {post.data.image && (
+                  <div class="h-40 bg-gray-200 overflow-hidden">
+                    <img 
+                      src={post.data.image} 
+                      alt={post.data.imageAlt || post.data.title}
+                      class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                )}
+                <div class="p-4">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">
+                      {categories[post.data.category]}
+                    </span>
+                    <span class="text-gray-500 text-xs">
+                      {formatDate(new Date(post.data.pubDate))}
+                    </span>
+                  </div>
+                  <h3 class="font-bold text-gray-800 mb-2 line-clamp-2">
+                    <a href={`/news/${post.id}`} class="hover:text-blue-600 transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-3 line-clamp-2">
+                    {post.data.description}
+                  </p>
+                  <a 
+                    href={`/news/${post.id}`}
+                    class="text-blue-600 hover:text-blue-800 font-semibold text-sm"
+                  >
+                    Đọc tiếp →
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- CTA Section -->
+      <section class="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-lg p-8 text-center">
+        <h3 class="text-2xl font-bold mb-4">Cần Hỗ Trợ Tư Vấn?</h3>
+        <p class="text-lg mb-6">
+          Đội ngũ chuyên gia của Khoa Lan sẵn sàng tư vấn miễn phí cho bạn
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a 
+            href="tel:0867555211" 
+            class="bg-khoalan-yellow text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors"
+          >
+            📞 Gọi Ngay: 0867 555 211
+          </a>
+          <a 
+            href="https://zalo.me/0867555211" 
+            target="_blank"
+            class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+          >
+            💬 Chat Zalo
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .prose {
+    color: #374151;
+    line-height: 1.75;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: #111827;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h1 { font-size: 2.25rem; }
+  .prose h2 { font-size: 1.875rem; }
+  .prose h3 { font-size: 1.5rem; }
+  .prose h4 { font-size: 1.25rem; }
+
+  .prose p {
+    margin-bottom: 1.25rem;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose strong {
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .prose a {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+
+  .prose a:hover {
+    color: #1d4ed8;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #6b7280;
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid #d1d5db;
+    padding: 0.75rem;
+    text-align: left;
+  }
+
+  .prose th {
+    background-color: #f9fafb;
+    font-weight: 600;
+  }
+
+  .prose code {
+    background-color: #f3f4f6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  .prose pre {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose pre code {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+  }
+</style>
+
+<script>
+  // Copy link function
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      // Show success notification
+      const notification = document.createElement('div');
+      notification.textContent = '✅ Đã sao chép link thành công';
+      notification.className = 'fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 font-semibold';
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }).catch(() => {
+      alert('Không thể sao chép link. Vui lòng thử lại.');
+    });
+  }
+
+  // Make function globally available
+  window.copyLink = copyLink;
+</script> 
