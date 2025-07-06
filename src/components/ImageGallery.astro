@@ -1,0 +1,465 @@
+---
+export interface Props {
+  images: Array<{
+    src: string;
+    alt: string;
+    title?: string;
+  }>;
+  columns?: number;
+  gap?: string;
+}
+
+const { images, columns = 3, gap = "1rem" } = Astro.props;
+const galleryId = `gallery-${Math.random().toString(36).substr(2, 9)}`;
+const imageCount = images.length;
+---
+
+<div 
+  class="image-gallery" 
+  style={`--columns: ${columns}; --gap: ${gap}; --image-count: ${imageCount}`} 
+  data-gallery-id={galleryId}
+  data-image-count={imageCount}
+>
+  {images.map((image, index) => (
+    <div class="image-item" data-index={index}>
+      <img 
+        src={image.src} 
+        alt={image.alt}
+        title={image.title || image.alt}
+        loading="lazy"
+        class="gallery-image"
+      />
+      {image.title && (
+        <div class="image-caption">{image.title}</div>
+      )}
+    </div>
+  ))}
+</div>
+
+<!-- Modal for fullscreen view -->
+<div id={`imageModal-${galleryId}`} class="modal">
+  <div class="modal-content">
+    <span class="close" data-gallery={galleryId}>&times;</span>
+    <img id={`modalImage-${galleryId}`} src="" alt="" />
+    <div id={`modalCaption-${galleryId}`} class="modal-caption"></div>
+    <div class="modal-nav">
+      <button class="nav-btn prev" data-gallery={galleryId} data-direction="-1">&#10094;</button>
+      <button class="nav-btn next" data-gallery={galleryId} data-direction="1">&#10095;</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: var(--gap);
+    margin: 2rem 0;
+    justify-content: center;
+  }
+
+  /* Dynamic sizing based on image count */
+  
+  /* 1 image - large display */
+  .image-gallery[data-image-count="1"] {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .image-gallery[data-image-count="1"] .image-item img {
+    height: 400px;
+  }
+
+  /* 2 images - medium display */
+  .image-gallery[data-image-count="2"] {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .image-gallery[data-image-count="2"] .image-item img {
+    height: 300px;
+  }
+
+  /* 3-4 images - responsive columns */
+  .image-gallery[data-image-count="3"],
+  .image-gallery[data-image-count="4"] {
+    grid-template-columns: repeat(var(--columns), 1fr);
+  }
+  
+  .image-gallery[data-image-count="3"] .image-item img,
+  .image-gallery[data-image-count="4"] .image-item img {
+    height: 250px;
+  }
+
+  /* 5+ images - standard grid */
+  .image-gallery:not([data-image-count="1"]):not([data-image-count="2"]):not([data-image-count="3"]):not([data-image-count="4"]) .image-item img {
+    height: 200px;
+  }
+
+  /* Mobile responsive adjustments */
+  @media (max-width: 768px) {
+    .image-gallery {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .image-gallery[data-image-count="1"] {
+      grid-template-columns: 1fr;
+    }
+    
+    .image-gallery[data-image-count="1"] .image-item img {
+      height: 300px;
+    }
+    
+    .image-gallery[data-image-count="2"] .image-item img {
+      height: 220px;
+    }
+    
+    .image-gallery[data-image-count="3"] .image-item img,
+    .image-gallery[data-image-count="4"] .image-item img {
+      height: 180px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .image-gallery {
+      grid-template-columns: 1fr;
+    }
+    
+    .image-gallery[data-image-count="1"] .image-item img {
+      height: 250px;
+    }
+    
+    .image-gallery[data-image-count="2"] .image-item img,
+    .image-gallery[data-image-count="3"] .image-item img,
+    .image-gallery[data-image-count="4"] .image-item img {
+      height: 200px;
+    }
+  }
+
+  .image-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .image-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .image-item img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 12px;
+  }
+
+  .image-item:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Fallback handling for missing images */
+  .image-item img:not([src]),
+  .image-item img[src=""],
+  .image-item img[src*="placeholder"] {
+    opacity: 0;
+  }
+
+  .image-item img[alt]:after {
+    content: attr(alt);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 1.5rem 1rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .image-item:hover .image-caption {
+    opacity: 1;
+  }
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-content {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .modal img {
+    /* Sử dụng viewport units thay vì px cố định */
+    width: 85vw;
+    height: 80vh;
+    max-width: 90vw;
+    max-height: 85vh;
+    min-width: 60vw;
+    min-height: 50vh;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+    cursor: zoom-in;
+  }
+
+  .modal img.zoomed {
+    cursor: zoom-out;
+  }
+
+  @media (max-width: 768px) {
+    .modal img {
+      width: 90vw;
+      height: 75vh;
+      max-width: 95vw;
+      max-height: 80vh;
+      min-width: 70vw;
+      min-height: 45vh;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .modal img {
+      width: 95vw;
+      height: 70vh;
+      max-width: 98vw;
+      max-height: 75vh;
+      min-width: 80vw;
+      min-height: 40vh;
+    }
+  }
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.3s ease;
+  }
+
+  .close:hover {
+    color: #ccc;
+  }
+
+  .modal-caption {
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+  }
+
+  .nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+    pointer-events: auto;
+  }
+
+  .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
+
+<script is:inline define:vars={{ galleryId, images }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const gallery = document.querySelector(`[data-gallery-id="${galleryId}"]`);
+    const modal = document.getElementById(`imageModal-${galleryId}`);
+    const modalImg = document.getElementById(`modalImage-${galleryId}`);
+    const modalCaption = document.getElementById(`modalCaption-${galleryId}`);
+    const closeBtn = document.querySelector(`[data-gallery="${galleryId}"].close`);
+    const prevBtn = document.querySelector(`[data-gallery="${galleryId}"][data-direction="-1"]`);
+    const nextBtn = document.querySelector(`[data-gallery="${galleryId}"][data-direction="1"]`);
+    
+    let currentImageIndex = 0;
+    let currentZoom = 1;
+    let isZoomed = false;
+    const galleryImages = images;
+    const minZoom = 0.5;
+    const maxZoom = 3;
+    const zoomStep = 0.2;
+
+    // Add click event to each image
+    const imageItems = gallery?.querySelectorAll('.image-item');
+    imageItems?.forEach((item, index) => {
+      item.addEventListener('click', () => openModal(index));
+    });
+
+    function openModal(index) {
+      currentImageIndex = index;
+      resetZoom();
+      showImage();
+      if (modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        resetZoom();
+      }
+    }
+
+    function resetZoom() {
+      currentZoom = 1;
+      isZoomed = false;
+      if (modalImg) {
+        modalImg.style.transform = 'scale(1)';
+        modalImg.classList.remove('zoomed');
+      }
+    }
+
+    function setZoom(zoom) {
+      currentZoom = Math.max(minZoom, Math.min(maxZoom, zoom));
+      if (modalImg) {
+        modalImg.style.transform = `scale(${currentZoom})`;
+        if (currentZoom > 1) {
+          modalImg.classList.add('zoomed');
+          isZoomed = true;
+        } else {
+          modalImg.classList.remove('zoomed');
+          isZoomed = false;
+        }
+      }
+    }
+
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      if (currentImageIndex >= galleryImages.length) {
+        currentImageIndex = 0;
+      } else if (currentImageIndex < 0) {
+        currentImageIndex = galleryImages.length - 1;
+      }
+      resetZoom();
+      showImage();
+    }
+
+    function showImage() {
+      const currentImage = galleryImages[currentImageIndex];
+      if (modalImg && modalCaption && currentImage) {
+        modalImg.src = currentImage.src;
+        modalImg.alt = currentImage.alt;
+        modalCaption.textContent = currentImage.title || currentImage.alt;
+      }
+    }
+
+    // Event listeners
+    closeBtn?.addEventListener('click', closeModal);
+    prevBtn?.addEventListener('click', () => changeImage(-1));
+    nextBtn?.addEventListener('click', () => changeImage(1));
+
+    // Click to zoom toggle
+    modalImg?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (isZoomed) {
+        setZoom(1);
+      } else {
+        setZoom(2);
+      }
+    });
+
+    // Wheel zoom
+    modalImg?.addEventListener('wheel', (event) => {
+      event.preventDefault();
+      const delta = event.deltaY > 0 ? -zoomStep : zoomStep;
+      setZoom(currentZoom + delta);
+    });
+
+    // Close modal when clicking outside the image
+    modal?.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (event) => {
+      if (modal && modal.style.display === 'block') {
+        if (event.key === 'Escape') {
+          closeModal();
+        } else if (event.key === 'ArrowLeft') {
+          changeImage(-1);
+        } else if (event.key === 'ArrowRight') {
+          changeImage(1);
+        } else if (event.key === '+' || event.key === '=') {
+          setZoom(currentZoom + zoomStep);
+        } else if (event.key === '-') {
+          setZoom(currentZoom - zoomStep);
+        } else if (event.key === '0') {
+          setZoom(1);
+        }
+      }
+    });
+  });
+</script>

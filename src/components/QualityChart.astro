@@ -1,0 +1,134 @@
+---
+// Component biểu đồ so sánh chất lượng SENDO vs thép thông thường
+const chartId = `qualityChart-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class="quality-chart-container">
+  <div class="chart-wrapper">
+    <canvas id={chartId} width="600" height="300"></canvas>
+  </div>
+  <p class="chart-description">
+    Thép SENDO luôn đảm bảo trọng lượng và lớp mạ kẽm vượt trội, mang lại giá trị thực sự cho khoản đầu tư của bạn.
+  </p>
+</div>
+
+<style>
+  .quality-chart-container {
+    background: #f9fafb;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    margin: 2rem 0;
+  }
+
+  .chart-wrapper {
+    max-width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .chart-description {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #6b7280;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .quality-chart-container {
+      padding: 1rem;
+    }
+    
+    .chart-wrapper {
+      height: 250px;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ chartId }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Load Chart.js from CDN
+    if (!window.Chart) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+      script.onload = () => initChart();
+      document.head.appendChild(script);
+    } else {
+      initChart();
+    }
+
+    function initChart() {
+      const canvas = document.getElementById(chartId);
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Trọng lượng (So với tiêu chuẩn)', 'Lớp mạ kẽm (So với cam kết)'],
+          datasets: [
+            {
+              label: 'Thép SENDO',
+              data: [100, 105], // 100% weight, 105% zinc coating (exceeds promise)
+              backgroundColor: '#1d4ed8',
+              borderRadius: 6,
+            },
+            {
+              label: 'Thép thông thường',
+              data: [95, 75], // 95% weight, 75% zinc coating
+              backgroundColor: '#9ca3af',
+              borderRadius: 6,
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 120,
+              ticks: {
+                callback: function(value) {
+                  return value + '%'
+                }
+              },
+              title: {
+                display: true,
+                text: 'Tỷ lệ so với cam kết (%)'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                padding: 20,
+                font: {
+                  size: 14
+                }
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  let label = context.dataset.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  if (context.parsed.y !== null) {
+                    label += context.parsed.y + '% so với tiêu chuẩn';
+                  }
+                  return label;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+  });
+</script>

@@ -1,0 +1,706 @@
+---
+title: "Thép SENDO - Nền Tảng Vững Bền Cho Mọi Công Trình"
+description: "Đầu tư một lần, an tâm trọn đời với thép SENDO chất lượng Việt-Nhật. Chống gỉ sét tối ưu, bền bỉ vượt trội, giải pháp hoàn hảo cho mọi công trình xây dựng."
+category: "san-pham-moi"
+isHot: true
+pubDate: 2025-01-06
+author: "Khoa Lan"
+tags: ["thép sendo", "việt nhật", "chống gỉ", "xây dựng", "chất lượng cao"]
+---
+
+import ImageGallery from '../../components/ImageGallery.astro';
+import QualityChart from '../../components/QualityChart.astro';
+import FAQ from '../../components/FAQ.astro';
+import ContactForm from '../../components/ContactForm.astro';
+
+<div class="hero-section">
+  <div class="hero-content">
+    <h1 class="hero-title">Đầu Tư Một Lần, An Tâm Trọn Đời</h1>
+    <p class="hero-subtitle">
+      Đừng để chi phí sửa chữa bào mòn lợi nhuận của bạn. Chọn thép SENDO chất lượng Việt-Nhật để công trình bền vững với thời gian.
+    </p>
+    <a href="#contact" class="hero-cta">Tìm Đại Lý Gần Bạn</a>
+  </div>
+</div>
+
+## Rủi Ro Vô Hình Từ Thép Kém Chất Lượng
+
+Chi phí ban đầu có thể rẻ, nhưng chi phí sửa chữa, thay thế và tổn thất uy tín do gỉ sét, xuống cấp còn đắt hơn gấp nhiều lần. Đó là một sự đánh đổi không đáng.
+
+<div class="risk-grid">
+  <div class="risk-card">
+    <div class="risk-icon rust">🔥</div>
+    <h3>Gỉ Sét, Ăn Mòn</h3>
+    <p>Làm mất thẩm mỹ, yếu kết cấu và tốn kém chi phí sơn sửa, bảo trì thường xuyên.</p>
+  </div>
+  
+  <div class="risk-card">
+    <div class="risk-icon weak">⚠️</div>
+    <h3>Kết Cấu Không Đảm Bảo</h3>
+    <p>Thép thiếu ký, không đủ độ dày có thể gây nguy hiểm cho toàn bộ công trình và con người.</p>
+  </div>
+  
+  <div class="risk-card">
+    <div class="risk-icon cost">💸</div>
+    <h3>Tổn Thất Chi Phí & Uy Tín</h3>
+    <p>Công trình xuống cấp nhanh chóng làm giảm giá trị tài sản và ảnh hưởng đến uy tín của chủ đầu tư.</p>
+  </div>
+</div>
+
+## Thép SENDO - Sự Lựa Chọn Thông Minh
+
+Chúng tôi không bán thép, chúng tôi bán sự an tâm. Với công nghệ Nhật Bản và sự am hiểu thị trường Việt Nam, SENDO mang đến giải pháp nền tảng vững chắc nhất.
+
+<div class="benefits-grid">
+  <div class="benefit-card">
+    <h3>🏗️ BỀN BỈ VƯỢT TRỘI</h3>
+    <p>Sản phẩm cam kết <strong>đủ ký, đúng độ dày</strong>. Kết cấu của bạn sẽ vững chắc và an toàn trong hàng chục năm.</p>
+  </div>
+  
+  <div class="benefit-card">
+    <h3>🛡️ CHỐNG GỈ SÉT TỐI ƯU</h3>
+    <p>Lớp mạ kẽm <strong>Z80+</strong> và lớp phủ bảo vệ đặc biệt giúp chống lại thời tiết khắc nghiệt, đặc biệt tại các vùng ven biển.</p>
+  </div>
+  
+  <div class="benefit-card">
+    <h3>🇯🇵 CHẤT LƯỢNG NHẬT BẢN</h3>
+    <p>Sản xuất trên dây chuyền hiện đại, quản lý theo tiêu chuẩn <strong>ISO 9001:2015</strong>, đảm bảo chất lượng đồng đều trên từng sản phẩm.</p>
+  </div>
+</div>
+
+## Sự Khác Biệt Bạn Có Thể "Cân, Đo, Đong, Đếm"
+
+Đừng chỉ tin vào lời nói. Hãy xem sự khác biệt thực tế giữa Thép SENDO và các loại thép thông thường trên thị trường.
+
+<QualityChart />
+
+## Giải Pháp Cho Mọi Nhu Cầu
+
+Dù bạn đang xây nhà xưởng, làm hàng rào, hay trang trí nội thất, SENDO đều có sản phẩm phù hợp với yêu cầu khắt khe nhất.
+
+<div class="applications-grid">
+  <div class="app-card">
+    <div class="app-image factory">🏭</div>
+    <h3>Kết Cấu Nhà Xưởng</h3>
+    <p>Khung chính, dầm, cột chịu lực cho các công trình công nghiệp quy mô lớn.</p>
+  </div>
+  
+  <div class="app-card">
+    <div class="app-image fence">🚧</div>
+    <h3>Hàng Rào & Lan Can</h3>
+    <p>Bảo vệ an toàn, thẩm mỹ cao, chống ăn mòn trong môi trường khắc nghiệt.</p>
+  </div>
+  
+  <div class="app-card">
+    <div class="app-image scaffold">🏗️</div>
+    <h3>Giàn Giáo An Toàn</h3>
+    <p>Đảm bảo an toàn tuyệt đối cho công nhân trong quá trình thi công.</p>
+  </div>
+  
+  <div class="app-card">
+    <div class="app-image interior">🪑</div>
+    <h3>Khung Nội Thất</h3>
+    <p>Tạo nên những sản phẩm nội thất bền đẹp, hiện đại và sang trọng.</p>
+  </div>
+</div>
+
+## Khách Hàng Nói Gì Về SENDO?
+
+<div class="testimonials">
+  <div class="testimonial">
+    <p class="quote">"Từ khi chuyển sang dùng thép SENDO cho các dự án ven biển, tôi không còn phải lo lắng về vấn đề gỉ sét nữa. Khách hàng rất hài lòng, uy tín của công ty tôi cũng tăng theo. Đúng là 'đắt xắt ra miếng'."</p>
+    <div class="author">— Anh Minh, Nhà thầu tại Vũng Tàu</div>
+  </div>
+  
+  <div class="testimonial">
+    <p class="quote">"Tôi xây nhà để ở lâu dài nên rất kỹ tính. Chọn thép SENDO dù chi phí cao hơn chút nhưng đổi lại là sự an tâm. Mấy năm rồi mà hàng rào, mái hiên vẫn sáng bóng như mới. Rất đáng tiền."</p>
+    <div class="author">— Chị Lan, Chủ nhà tại Nha Trang</div>
+  </div>
+</div>
+
+## Những Câu Hỏi Thường Gặp
+
+<div class="faq-container">
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>1. Tại sao tôi nên chọn SENDO dù giá có thể cao hơn một chút?</h3>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Bạn đang đầu tư vào sự bền vững. Chi phí cao hơn một chút ban đầu sẽ giúp bạn tiết kiệm rất nhiều chi phí sửa chữa, bảo trì trong tương lai. Công trình của bạn sẽ an toàn hơn, bền đẹp hơn và giữ giá trị lâu hơn. Đó là một khoản đầu tư sinh lời.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>2. Làm sao để phân biệt thép SENDO thật?</h3>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Rất đơn giản! Mọi sản phẩm thép SENDO chính hãng đều có in dòng chữ "SENDO" cùng với tiêu chuẩn chất lượng (ví dụ: Z80) rõ ràng trên thân ống. Ngoài ra, hãy luôn mua hàng tại các đại lý, nhà phân phối uy tín được chúng tôi giới thiệu.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>3. Đối thủ cạnh tranh chính của SENDO là ai?</h3>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Thị trường có nhiều thương hiệu lớn như Hòa Phát, Hoa Sen. Tuy nhiên, SENDO không cạnh tranh trực tiếp về giá rẻ hay sản lượng. Chúng tôi tập trung vào phân khúc khách hàng yêu cầu chất lượng cao nhất, những người hiểu rằng độ bền và sự an toàn là yếu tố không thể thỏa hiệp.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>4. Thép SENDO có phù hợp với vùng ven biển không?</h3>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>Hoàn toàn phù hợp! Thép SENDO được thiết kế đặc biệt để chống lại môi trường ăn mòn cao như vùng ven biển. Lớp mạ kẽm Z80+ cùng công nghệ chống ăn mòn tiên tiến giúp sản phẩm duy trì chất lượng trong nhiều thập kỷ.</p>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h3>5. Bảo hành của SENDO như thế nào?</h3>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">
+      <p>SENDO cam kết bảo hành chất lượng sản phẩm theo tiêu chuẩn quốc tế. Nếu có bất kỳ khuyết tật nào do lỗi sản xuất, chúng tôi sẽ đổi trả 100%. Ngoài ra, đội ngũ kỹ thuật sẽ hỗ trợ tư vấn sử dụng và bảo trì để tối ưu tuổi thọ sản phẩm.</p>
+    </div>
+  </div>
+</div>
+
+## Sẵn Sàng Xây Dựng Sự Bền Vững?
+
+<div id="contact"></div>
+
+Hãy để lại thông tin, đội ngũ chuyên gia của chúng tôi sẽ liên hệ để tư vấn giải pháp phù hợp nhất và giới thiệu đại lý gần bạn.
+
+<div class="contact-form-container">
+  <form class="contact-form" id="sendoContactForm">
+    <div class="form-group">
+      <input 
+        type="text" 
+        name="fullName"
+        placeholder="Họ và Tên *" 
+        required
+        class="form-input"
+      />
+    </div>
+    
+    <div class="form-group">
+      <input 
+        type="tel" 
+        name="phone"
+        placeholder="Số điện thoại *" 
+        required
+        class="form-input phone-input"
+      />
+    </div>
+    
+    <div class="form-group">
+      <input 
+        type="email" 
+        name="email"
+        placeholder="Email (không bắt buộc)" 
+        class="form-input"
+      />
+    </div>
+    
+    <div class="form-group">
+      <textarea 
+        name="requirements"
+        placeholder="Nhu cầu của bạn (ví dụ: xây nhà xưởng 1000m2, cần báo giá...)" 
+        rows="4" 
+        class="form-input"
+        required
+      ></textarea>
+    </div>
+    
+    <button type="submit" class="submit-button">
+      <span class="button-text">Gửi Yêu Cầu Ngay</span>
+      <span class="loading-spinner" style="display: none;">
+        ⏳ Đang gửi...
+      </span>
+    </button>
+    
+    <div class="form-message" style="display: none;"></div>
+  </form>
+</div>
+
+### Tại sao chọn Khoa Lan?
+
+🏢 **Công ty TNHH Khoa Lan** - Đối tác tin cậy cho mọi nhu cầu thép SENDO:
+
+✅ **Sản phẩm chính hãng:** 100% thép SENDO Việt Nhật chính hãng  
+✅ **Giá cạnh tranh:** Cam kết giá tốt nhất thị trường  
+✅ **Giao hàng nhanh:** Vận chuyển toàn quốc, giao hàng tận nơi  
+✅ **Hỗ trợ kỹ thuật:** Tư vấn chuyên nghiệp, hướng dẫn sử dụng  
+✅ **Bảo hành chất lượng:** Cam kết chất lượng, đổi trả nếu có lỗi  
+
+### Liên hệ trực tiếp
+
+📞 **Hotline:** **0867.555.211**  
+🌐 **Website:** KhoaLan.vn  
+💬 **Tư vấn 24/7:** Luôn sẵn sàng hỗ trợ bạn  
+
+---
+
+<div class="final-cta">
+  <p><strong>Đầu tư thông minh hôm nay, tận hưởng giá trị lâu dài!</strong></p>
+  <p>Liên hệ ngay với Khoa Lan để nhận báo giá và tư vấn tốt nhất cho dự án của bạn.</p>
+</div>
+
+<style>
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 16px;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: #fbbf24;
+    color: #1e3a8a;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.125rem;
+    box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .hero-cta:hover {
+    background: #f59e0b;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(251, 191, 36, 0.4);
+  }
+
+  /* Risk Grid */
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .risk-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-left: 4px solid #dc2626;
+  }
+
+  .risk-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .risk-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1f2937;
+  }
+
+  .risk-card p {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  /* Benefits Grid */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .benefit-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: 1px solid #e5e7eb;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .benefit-card h3 {
+    color: #1e3a8a;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card p {
+    color: #4b5563;
+    line-height: 1.6;
+  }
+
+  /* Applications Grid */
+  .applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .app-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .app-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .app-image {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .app-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+  }
+
+  .app-card p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  /* Testimonials */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    border-radius: 16px;
+  }
+
+  .testimonial {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+  }
+
+  .quote {
+    color: white;
+    font-style: italic;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .author {
+    color: #fbbf24;
+    font-weight: 600;
+  }
+
+  /* Final CTA */
+  .final-cta {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .final-cta p {
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+  }
+
+  /* FAQ Styles */
+  .faq-container {
+    max-width: 4xl;
+    margin: 0 auto;
+    space-y: 1rem;
+  }
+
+  .faq-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .faq-item:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .faq-question h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+    padding-right: 1rem;
+  }
+
+  .faq-icon {
+    font-size: 1.5rem;
+    color: #1d4ed8;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    padding-top: 0;
+  }
+
+  .faq-answer.active {
+    padding-top: 1rem;
+  }
+
+  .faq-answer p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  /* Contact Form Styles */
+  .contact-form-container {
+    max-width: 36rem;
+    margin: 2rem auto;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .form-group {
+    position: relative;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.875rem;
+    border: 2px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+  }
+
+  .form-input:invalid:not(:placeholder-shown) {
+    border-color: #dc2626;
+  }
+
+  .form-input:valid:not(:placeholder-shown) {
+    border-color: #16a34a;
+  }
+
+  textarea.form-input {
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+  }
+
+  .submit-button {
+    width: 100%;
+    background: #1d4ed8;
+    color: white;
+    font-weight: bold;
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .submit-button:hover:not(:disabled) {
+    background: #1e40af;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(29, 78, 216, 0.3);
+  }
+
+  .submit-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .form-message {
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+
+  .form-message.success {
+    background: #dcfce7;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+  }
+
+  .form-message.error {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+    
+    .hero-cta {
+      padding: 0.875rem 1.5rem;
+      font-size: 1rem;
+    }
+    
+    .risk-grid,
+    .benefits-grid,
+    .applications-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .testimonials {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+    
+    .risk-card,
+    .benefit-card,
+    .testimonial {
+      padding: 1.5rem;
+    }
+
+    .faq-question h3 {
+      font-size: 1rem;
+    }
+    
+    .faq-item {
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-section {
+      padding: 2rem 1rem;
+    }
+    
+    .hero-title {
+      font-size: 1.75rem;
+    }
+    
+    .testimonials {
+      margin: 1rem -1rem;
+      border-radius: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other FAQ items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            otherAnswer.style.maxHeight = '0px';
+            otherAnswer.classList.remove('active');
+          }
+        });
+
+        // Toggle current item
+        if (isActive) {
+          item.classList.remove('active');
+          answer.style.maxHeight = '0px';
+          answer.classList.remove('active');
+        } else {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          answer.classList.add('active');
+        }
+      });
+    });
+  });
+</script>

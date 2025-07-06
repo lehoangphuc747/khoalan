@@ -1,0 +1,389 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  title?: string;
+  caption?: string;
+  className?: string;
+  desktopSize?: 'small' | 'medium' | 'large' | 'full';
+  mobileSize?: 'small' | 'medium' | 'large' | 'full';
+}
+
+const { 
+  src, 
+  alt, 
+  title, 
+  caption, 
+  className = '',
+  desktopSize = 'large',
+  mobileSize = 'full'
+} = Astro.props;
+---
+
+<div class={`single-image-container ${className}`}>
+  <div class="single-image-wrapper" data-desktop-size={desktopSize} data-mobile-size={mobileSize}>
+    <img 
+      src={src} 
+      alt={alt} 
+      title={title}
+      class="single-image"
+      loading="lazy"
+    />
+    {caption && (
+      <div class="image-caption">
+        {caption}
+      </div>
+    )}
+  </div>
+</div>
+
+<!-- Fullscreen Modal -->
+<div class="fullscreen-modal" id="fullscreen-modal">
+  <div class="fullscreen-backdrop"></div>
+  <div class="fullscreen-content">
+    <img class="fullscreen-image" id="fullscreen-image" alt="" />
+    <button class="fullscreen-close" id="fullscreen-close" aria-label="Đóng">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .single-image-container {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .single-image-wrapper {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .single-image-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .single-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+    user-select: none;
+  }
+
+  .single-image:hover {
+    transform: scale(1.02);
+  }
+
+  .image-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 1rem;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .single-image-wrapper:hover .image-caption {
+    opacity: 1;
+  }
+
+  /* Desktop Size Classes */
+  .single-image-wrapper[data-desktop-size="small"] .single-image {
+    max-width: 400px;
+  }
+  
+  .single-image-wrapper[data-desktop-size="medium"] .single-image {
+    max-width: 600px;
+  }
+  
+  .single-image-wrapper[data-desktop-size="large"] .single-image {
+    max-width: 800px;
+  }
+  
+  .single-image-wrapper[data-desktop-size="full"] .single-image {
+    max-width: 100%;
+  }
+
+  /* Fullscreen Modal */
+  .fullscreen-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .fullscreen-modal.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .fullscreen-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  .fullscreen-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .fullscreen-image {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  .fullscreen-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .fullscreen-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .single-image-container {
+      margin: 1.5rem 0;
+    }
+    
+    .single-image-wrapper[data-mobile-size="small"] .single-image {
+      max-width: 280px;
+    }
+    
+    .single-image-wrapper[data-mobile-size="medium"] .single-image {
+      max-width: 400px;
+    }
+    
+    .single-image-wrapper[data-mobile-size="large"] .single-image {
+      max-width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    
+    .single-image-wrapper[data-mobile-size="full"] .single-image {
+      max-width: 100%;
+    }
+    
+    .image-caption {
+      font-size: 0.8rem;
+      padding: 0.75rem;
+    }
+
+    .fullscreen-content {
+      padding: 1rem;
+    }
+
+    .fullscreen-close {
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  /* Fallback gradient for missing images */
+  .single-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .single-image:not([src]),
+  .single-image[src=""],
+  .single-image[src*="placeholder"] {
+    opacity: 0;
+  }
+
+  .single-image:not([src]) + .single-image-wrapper::before,
+  .single-image[src=""] + .single-image-wrapper::before,
+  .single-image[src*="placeholder"] + .single-image-wrapper::before {
+    opacity: 1;
+  }
+
+  /* Loading state */
+  .single-image-wrapper.loading .single-image {
+    opacity: 0.5;
+  }
+
+  /* Click indication */
+  .single-image-wrapper:active {
+    transform: scale(0.98);
+  }
+</style>
+
+<script>
+  class SingleImageHandler {
+    constructor() {
+      this.modal = null;
+      this.modalImage = null;
+      this.closeButton = null;
+      this.pressTimer = null;
+      this.pressDelay = 0; // 500ms press delay
+      this.init();
+    }
+
+    init() {
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.setupEventListeners());
+      } else {
+        this.setupEventListeners();
+      }
+    }
+
+    setupEventListeners() {
+      this.modal = document.getElementById('fullscreen-modal');
+      this.modalImage = document.getElementById('fullscreen-image');
+      this.closeButton = document.getElementById('fullscreen-close');
+
+      if (!this.modal || !this.modalImage || !this.closeButton) return;
+
+      // Setup image click handlers
+      document.querySelectorAll('.single-image-wrapper').forEach(wrapper => {
+        const img = wrapper.querySelector('.single-image');
+        if (!img) return;
+
+        // Mouse events
+        wrapper.addEventListener('mousedown', (e) => this.handlePressStart(e, img));
+        wrapper.addEventListener('mouseup', () => this.handlePressEnd());
+        wrapper.addEventListener('mouseleave', () => this.handlePressEnd());
+
+        // Touch events for mobile
+        wrapper.addEventListener('touchstart', (e) => this.handlePressStart(e, img), { passive: false });
+        wrapper.addEventListener('touchend', () => this.handlePressEnd());
+        wrapper.addEventListener('touchcancel', () => this.handlePressEnd());
+
+        // Prevent context menu on long press
+        wrapper.addEventListener('contextmenu', (e) => e.preventDefault());
+      });
+
+      // Modal close handlers
+      this.closeButton.addEventListener('click', () => this.closeModal());
+      this.modal.addEventListener('click', (e) => {
+        if (e.target === this.modal || e.target.classList.contains('fullscreen-backdrop')) {
+          this.closeModal();
+        }
+      });
+
+      // Keyboard handler
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+          this.closeModal();
+        }
+      });
+    }
+
+    handlePressStart(e, img) {
+      e.preventDefault();
+      
+      this.pressTimer = setTimeout(() => {
+        this.openModal(img);
+      }, this.pressDelay);
+
+      // Add visual feedback
+      e.currentTarget.style.transform = 'scale(0.98)';
+    }
+
+    handlePressEnd() {
+      if (this.pressTimer) {
+        clearTimeout(this.pressTimer);
+        this.pressTimer = null;
+      }
+
+      // Remove visual feedback
+      document.querySelectorAll('.single-image-wrapper').forEach(wrapper => {
+        wrapper.style.transform = '';
+      });
+    }
+
+    openModal(img) {
+      if (!this.modal || !this.modalImage) return;
+
+      this.modalImage.src = img.src;
+      this.modalImage.alt = img.alt;
+      
+      this.modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Focus management for accessibility
+      this.closeButton.focus();
+    }
+
+    closeModal() {
+      if (!this.modal) return;
+
+      this.modal.classList.remove('active');
+      document.body.style.overflow = '';
+      
+      // Reset modal image
+      setTimeout(() => {
+        if (this.modalImage) {
+          this.modalImage.src = '';
+          this.modalImage.alt = '';
+        }
+      }, 300);
+    }
+  }
+
+  // Initialize when script loads
+  new SingleImageHandler();
+
+  // Re-initialize when navigating in SPA
+  document.addEventListener('astro:page-load', () => {
+    new SingleImageHandler();
+  });
+</script>

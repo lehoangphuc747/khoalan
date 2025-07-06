@@ -1,0 +1,141 @@
+---
+export interface Props {
+  faqs: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+const { faqs } = Astro.props;
+const faqId = `faq-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class="faq-container" id={faqId}>
+  {faqs.map((faq, index) => (
+    <div class="faq-item" data-index={index}>
+      <div class="faq-question">
+        <h3>{faq.question}</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>{faq.answer}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .faq-container {
+    max-width: 4xl;
+    margin: 0 auto;
+    space-y: 1rem;
+  }
+
+  .faq-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1rem;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .faq-item:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .faq-question h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+    padding-right: 1rem;
+  }
+
+  .faq-icon {
+    font-size: 1.5rem;
+    color: #1d4ed8;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    padding-top: 0;
+  }
+
+  .faq-answer.active {
+    padding-top: 1rem;
+  }
+
+  .faq-answer p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 768px) {
+    .faq-question h3 {
+      font-size: 1rem;
+    }
+    
+    .faq-item {
+      padding: 1rem;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ faqId }}>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqContainer = document.getElementById(faqId);
+    if (!faqContainer) return;
+    
+    const faqItems = faqContainer.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all other FAQ items
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            otherAnswer.style.maxHeight = '0px';
+            otherAnswer.classList.remove('active');
+          }
+        });
+
+        // Toggle current item
+        if (isActive) {
+          item.classList.remove('active');
+          answer.style.maxHeight = '0px';
+          answer.classList.remove('active');
+        } else {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          answer.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
