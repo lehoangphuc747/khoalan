@@ -1,0 +1,55 @@
+---
+// src/components/Footer.astro
+---
+<footer class="bg-gray-800 text-gray-300">
+    <div class="container mx-auto px-4 lg:px-8 py-12 lg:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="space-y-4">
+                <a href="/" class="flex items-center space-x-2">
+                    <img src="/logo.png" alt="Logo Khoa Lan" class="h-10 w-auto">
+                    <span class="font-bold text-xl text-white">KHOA LAN</span>
+                </a>
+                <p class="text-sm">Nhà máy tôn - sắt - thép uy tín tại Lâm Đồng, chuyên cung cấp vật liệu xây dựng chất lượng cao, giá cả cạnh tranh.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white"><svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10C2.5 6 7.5 4 12 4s9.5 2 9.5 3a24.12 24.12 0 0 1 0 10c0 1-4.5 3-9.5 3s-9.5-2-9.5-3Z"/><path d="m10 9 5 3-5 3Z"/></svg></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-white text-lg mb-4">Liên Kết Nhanh</h4>
+                <ul class="space-y-2">
+                    <li><a href="/about" class="hover:text-white text-sm">Giới thiệu</a></li>
+                    <li><a href="/ton-sat-thep" class="hover:text-white text-sm">Tôn Sắt Thép</a></li>
+                    <li><a href="#" class="hover:text-white text-sm">Bảng giá</a></li>
+                    <li><a href="/#contact" class="hover:text-white text-sm">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white text-lg mb-4">Thông Tin Liên Hệ</h4>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex items-start">
+                         <svg class="h-4 w-4 mr-3 mt-1 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <span>358 Nam Hiệp 1, Xã Ka Đô, huyện Đơn Dương, tỉnh Lâm Đồng</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="h-4 w-4 mr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <a href="tel:0867555211" class="hover:text-white">0867 555 211</a>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="h-4 w-4 mr-3" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <a href="mailto:hoahongphuc0803@gmail.com" class="hover:text-white">hoahongphuc0803@gmail.com</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white text-lg mb-4">Vị Trí</h4>
+                 <div class="rounded-lg overflow-hidden">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3906.920958142341!2d108.49010357588075!3d11.71960204128036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3171331464f5b905%3A0x1c3127825b41315b!2zTmjDoCBtw6F5IHTDtG4gS2hvYSBMYW4!5e0!3m2!1svi!2s!4v1689063071234!5m2!1svi!2s" width="100%" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+            <p>&copy; 2024 Khoa Lan. All Rights Reserved. Designed by Gemini.</p>
+        </div>
+    </div>
+</footer> 

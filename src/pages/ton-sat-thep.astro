@@ -1,0 +1,342 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CTA from '../components/CTA.astro';
+
+// Import CSS toàn cục
+import '../styles/global.css';
+---
+
+<MainLayout title="Tôn Sắt Thép Chất Lượng Cao - Khoa Lan">
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white py-20">
+    <div class="absolute inset-0 bg-black opacity-20"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          Tôn Sắt Thép <span class="text-khoalan-yellow">Chất Lượng Cao</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+          Cung cấp đa dạng các loại tôn sắt thép với chất lượng vượt trội, giá cả cạnh tranh nhất thị trường
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#products" class="bg-khoalan-yellow text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+            Xem Sản Phẩm
+          </a>
+          <a href="tel:0867555211" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
+            Liên Hệ Ngay
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section class="bg-gray-100 py-4">
+    <div class="container mx-auto px-4">
+      <nav class="text-sm">
+        <a href="/" class="text-blue-600 hover:text-blue-800">Trang chủ</a>
+        <span class="mx-2 text-gray-500">/</span>
+        <span class="text-gray-700">Tôn Sắt Thép</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Sản Phẩm <span class="text-khoalan-yellow">Tôn Sắt Thép</span>
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Khoa Lan cung cấp đầy đủ các loại tôn sắt thép phục vụ mọi nhu cầu xây dựng
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Tôn Lạnh -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="h-64 bg-gradient-to-br from-gray-300 to-gray-500 relative overflow-hidden">
+            <img src="https://placehold.co/400x300/64748b/ffffff?text=Tôn+Lạnh" alt="Tôn lạnh" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Tôn Lạnh</h3>
+            <p class="text-gray-600 mb-4">Tôn lạnh chất lượng cao, độ bền vượt trội, phù hợp cho mọi công trình xây dựng.</p>
+            <ul class="text-sm text-gray-600 mb-4 space-y-1">
+              <li>• Độ dày: 0.3mm - 3.0mm</li>
+              <li>• Khổ rộng: 914mm, 1000mm, 1220mm</li>
+              <li>• Chiều dài: Theo yêu cầu</li>
+            </ul>
+            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+              Xem Chi Tiết
+            </button>
+          </div>
+        </div>
+
+        <!-- Tôn Màu -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="h-64 bg-gradient-to-br from-red-300 to-red-500 relative overflow-hidden">
+            <img src="https://placehold.co/400x300/ef4444/ffffff?text=Tôn+Màu" alt="Tôn màu" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Tôn Màu</h3>
+            <p class="text-gray-600 mb-4">Tôn màu đa dạng, chống ăn mòn tốt, tạo tính thẩm mỹ cao cho công trình.</p>
+            <ul class="text-sm text-gray-600 mb-4 space-y-1">
+              <li>• Màu sắc: Đỏ, xanh, trắng, ghi...</li>
+              <li>• Độ dày: 0.35mm - 0.8mm</li>
+              <li>• Bảo hành: 10-15 năm</li>
+            </ul>
+            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+              Xem Chi Tiết
+            </button>
+          </div>
+        </div>
+
+        <!-- Tôn Xốp -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="h-64 bg-gradient-to-br from-blue-300 to-blue-500 relative overflow-hidden">
+            <img src="https://placehold.co/400x300/3b82f6/ffffff?text=Tôn+Xốp" alt="Tôn xốp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Tôn Xốp</h3>
+            <p class="text-gray-600 mb-4">Tôn xốp cách nhiệt, cách âm hiệu quả, tiết kiệm năng lượng cho công trình.</p>
+            <ul class="text-sm text-gray-600 mb-4 space-y-1">
+              <li>• Độ dày lõi: 50mm - 150mm</li>
+              <li>• Cách nhiệt tuyệt vời</li>
+              <li>• Chống cháy, chống ẩm</li>
+            </ul>
+            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+              Xem Chi Tiết
+            </button>
+          </div>
+        </div>
+
+        <!-- Sắt Thép Xây Dựng -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="h-64 bg-gradient-to-br from-gray-400 to-gray-600 relative overflow-hidden">
+            <img src="https://placehold.co/400x300/6b7280/ffffff?text=Sắt+Thép" alt="Sắt thép xây dựng" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Sắt Thép Xây Dựng</h3>
+            <p class="text-gray-600 mb-4">Thép thanh, thép hộp, thép góc chất lượng cao cho mọi công trình xây dựng.</p>
+            <ul class="text-sm text-gray-600 mb-4 space-y-1">
+              <li>• Thép thanh: Φ6 - Φ32</li>
+              <li>• Thép hộp: 20x20 - 200x200</li>
+              <li>• Thép góc: 25x25 - 200x200</li>
+            </ul>
+            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+              Xem Chi Tiết
+            </button>
+          </div>
+        </div>
+
+        <!-- Phụ Kiện Nhà Kính -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="h-64 bg-gradient-to-br from-green-300 to-green-500 relative overflow-hidden">
+            <img src="https://placehold.co/400x300/22c55e/ffffff?text=Phụ+Kiện" alt="Phụ kiện nhà kính" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Phụ Kiện Nhà Kính</h3>
+            <p class="text-gray-600 mb-4">Đầy đủ phụ kiện cho nhà kính: ống nước, van tưới, hệ thống điều hòa.</p>
+            <ul class="text-sm text-gray-600 mb-4 space-y-1">
+              <li>• Ống nhựa PVC, PE</li>
+              <li>• Van tưới, béc phun</li>
+              <li>• Quạt thông gió</li>
+            </ul>
+            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+              Xem Chi Tiết
+            </button>
+          </div>
+        </div>
+
+        <!-- Dịch Vụ Thi Công -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="h-64 bg-gradient-to-br from-orange-300 to-orange-500 relative overflow-hidden">
+            <img src="https://placehold.co/400x300/f97316/ffffff?text=Thi+Công" alt="Dịch vụ thi công" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">Dịch Vụ Thi Công</h3>
+            <p class="text-gray-600 mb-4">Thi công trọn gói nhà kính, mái tôn, khung sắt với đội ngũ chuyên nghiệp.</p>
+            <ul class="text-sm text-gray-600 mb-4 space-y-1">
+              <li>• Thiết kế - Thi công</li>
+              <li>• Bảo hành dài hạn</li>
+              <li>• Giá cả cạnh tranh</li>
+            </ul>
+            <button class="w-full bg-khoalan-yellow text-blue-900 py-2 px-4 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+              Xem Chi Tiết
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advantages Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Tại Sao Chọn <span class="text-khoalan-yellow">Khoa Lan?</span>
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Những ưu điểm vượt trội khi chọn sản phẩm tôn sắt thép của Khoa Lan
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center group">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Chất Lượng Cao</h3>
+          <p class="text-gray-600">Sản phẩm đạt tiêu chuẩn quốc tế, độ bền vượt trội</p>
+        </div>
+
+        <div class="text-center group">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Giá Cạnh Tranh</h3>
+          <p class="text-gray-600">Giá tốt nhất thị trường, nhiều chương trình ưu đãi</p>
+        </div>
+
+        <div class="text-center group">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Tư Vấn Chuyên Nghiệp</h3>
+          <p class="text-gray-600">Đội ngũ kỹ thuật giàu kinh nghiệm, tư vấn tận tình</p>
+        </div>
+
+        <div class="text-center group">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-2">Giao Hàng Nhanh</h3>
+          <p class="text-gray-600">Giao hàng toàn quốc, nhanh chóng và an toàn</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specifications Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Thông Số <span class="text-khoalan-yellow">Kỹ Thuật</span>
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          Chi tiết thông số kỹ thuật các sản phẩm tôn sắt thép
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full bg-white rounded-lg shadow-lg overflow-hidden">
+          <thead class="bg-blue-900 text-white">
+            <tr>
+              <th class="px-6 py-4 text-left">Loại Sản Phẩm</th>
+              <th class="px-6 py-4 text-left">Độ Dày</th>
+              <th class="px-6 py-4 text-left">Khổ Rộng</th>
+              <th class="px-6 py-4 text-left">Chiều Dài</th>
+              <th class="px-6 py-4 text-left">Ứng Dụng</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 font-semibold">Tôn Lạnh</td>
+              <td class="px-6 py-4">0.3 - 3.0mm</td>
+              <td class="px-6 py-4">914, 1000, 1220mm</td>
+              <td class="px-6 py-4">Theo yêu cầu</td>
+              <td class="px-6 py-4">Mái nhà, vách ngăn</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 font-semibold">Tôn Màu</td>
+              <td class="px-6 py-4">0.35 - 0.8mm</td>
+              <td class="px-6 py-4">914, 1000mm</td>
+              <td class="px-6 py-4">2-12m</td>
+              <td class="px-6 py-4">Mái nhà, trang trí</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 font-semibold">Tôn Xốp</td>
+              <td class="px-6 py-4">50 - 150mm</td>
+              <td class="px-6 py-4">1000mm</td>
+              <td class="px-6 py-4">2-12m</td>
+              <td class="px-6 py-4">Cách nhiệt, âm</td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="px-6 py-4 font-semibold">Thép Thanh</td>
+              <td class="px-6 py-4">Φ6 - Φ32</td>
+              <td class="px-6 py-4">-</td>
+              <td class="px-6 py-4">6-12m</td>
+              <td class="px-6 py-4">Khung, cột</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          Quy Trình <span class="text-khoalan-yellow">Đặt Hàng</span>
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+          4 bước đơn giản để đặt hàng tôn sắt thép tại Khoa Lan
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-blue-900 font-bold text-xl">
+            1
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Liên Hệ Tư Vấn</h3>
+          <p class="text-gray-600">Gọi điện hoặc nhắn tin để được tư vấn miễn phí</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-blue-900 font-bold text-xl">
+            2
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Báo Giá</h3>
+          <p class="text-gray-600">Nhận báo giá chi tiết và ưu đãi tốt nhất</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-blue-900 font-bold text-xl">
+            3
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Đặt Hàng</h3>
+          <p class="text-gray-600">Xác nhận đơn hàng và thanh toán thuận tiện</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-16 h-16 bg-khoalan-yellow rounded-full flex items-center justify-center mx-auto mb-4 text-blue-900 font-bold text-xl">
+            4
+          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-2">Giao Hàng</h3>
+          <p class="text-gray-600">Giao hàng nhanh chóng đến tận nơi</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+  <Footer />
+</MainLayout> 

@@ -1,0 +1,40 @@
+---
+// src/components/Header.astro
+---
+<header id="main-header" class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+    <div class="container mx-auto px-4 lg:px-8">
+        <div class="flex justify-between items-center py-3">
+            <a href="/" class="flex items-center space-x-2">
+                <img src="/logo.png" alt="Logo Khoa Lan" class="h-10 lg:h-12 w-auto">
+                <span class="font-bold text-xl text-gray-800 hidden sm:block">KHOA LAN</span>
+            </a>
+            <nav class="hidden lg:flex items-center space-x-8">
+                <a href="/" class="text-gray-600 hover:text-khoalan-yellow font-medium transition-colors">Trang chủ</a>
+                <a href="/about" class="text-gray-600 hover:text-khoalan-yellow font-medium transition-colors">Giới thiệu</a>
+                <a href="/ton-sat-thep" class="text-gray-600 hover:text-khoalan-yellow font-medium transition-colors">Tôn Sắt Thép</a>
+                <a href="/#testimonials" class="text-gray-600 hover:text-khoalan-yellow font-medium transition-colors">Tin tức</a>
+                <a href="/#contact" class="text-gray-600 hover:text-khoalan-yellow font-medium transition-colors">Liên hệ</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="#contact" class="hidden sm:inline-block bg-khoalan-yellow text-white font-bold py-2 px-5 rounded-full hover:bg-opacity-90 transition-all shadow-lg">
+                    Yêu Cầu Báo Giá
+                </a>
+                <button id="mobile-menu-button" class="lg:hidden p-2 text-gray-700 hover:text-khoalan-yellow">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200">
+        <a href="/" class="block py-3 px-4 text-gray-600 hover:bg-gray-100 hover:text-khoalan-yellow">Trang chủ</a>
+        <a href="/about" class="block py-3 px-4 text-gray-600 hover:bg-gray-100 hover:text-khoalan-yellow">Giới thiệu</a>
+                  <a href="/ton-sat-thep" class="block py-3 px-4 text-gray-600 hover:bg-gray-100 hover:text-khoalan-yellow">Tôn Sắt Thép</a>
+        <a href="/#testimonials" class="block py-3 px-4 text-gray-600 hover:bg-gray-100 hover:text-khoalan-yellow">Tin tức</a>
+        <a href="/#contact" class="block py-3 px-4 text-gray-600 hover:bg-gray-100 hover:text-khoalan-yellow">Liên hệ</a>
+        <div class="p-4">
+             <a href="#contact" class="block w-full text-center bg-khoalan-yellow text-white font-bold py-2 px-5 rounded-full hover:bg-opacity-90 transition-all shadow-lg">
+                Yêu Cầu Báo Giá
+            </a>
+        </div>
+    </div>
+</header> 

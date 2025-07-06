@@ -1,0 +1,213 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Import CSS toàn cục
+import '../styles/global.css';
+---
+
+<MainLayout title="Giới thiệu - Khoa Lan Đơn Dương">
+	<Header />
+	<main>
+		<!-- Hero Section -->
+		<section class="hero-bg text-white py-20 lg:py-32">
+			<div class="container mx-auto px-4 lg:px-8 text-center">
+				<div class="max-w-4xl mx-auto">
+					<h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+						KHOA LAN ĐƠN DƯƠNG
+					</h1>
+					<p class="text-lg md:text-xl mb-8 opacity-90">
+						Nhà máy tôn - Đối tác chiến lược hàng đầu tại Lâm Đồng
+					</p>
+					<a href="#intro" class="bg-khoalan-yellow text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all shadow-lg">
+						Khám Phá Ngay
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Company Introduction -->
+		<section id="intro" class="py-16 lg:py-24 bg-gray-50">
+			<div class="container mx-auto px-4 lg:px-8">
+				<div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+					<div class="fade-in-up">
+						<span class="text-khoalan-yellow font-bold uppercase">Giới Thiệu Công Ty</span>
+						<h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mt-2 mb-6">Đối Tác Tin Cậy Cho Mọi Công Trình</h2>
+						<p class="text-gray-600 mb-6 leading-relaxed">
+							Công ty TNHH Khoa Lan Đơn Dương – Nhà máy tôn tự hào là đối tác chiến lược của Tôn Đông Á, Tôn Hoa Sen một trong những thương hiệu tôn hàng đầu Việt Nam.
+						</p>
+						<p class="text-gray-600 mb-6 leading-relaxed">
+							Với kinh nghiệm lâu năm trong lĩnh vực cung cấp và sản xuất tôn, chúng tôi cam kết mang đến cho khách hàng những sản phẩm chất lượng cao, bền vững và giá cả cạnh tranh.
+						</p>
+					</div>
+					<div class="fade-in-up">
+						<img src="https://placehold.co/600x500/e2e8f0/334155?text=Nhà+Máy+Khoa+Lan" alt="Nhà máy Khoa Lan" class="rounded-lg shadow-2xl w-full">
+					</div>
+				</div>
+
+				<!-- Features Grid -->
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 fade-in-up">
+						<div class="flex items-center justify-center h-16 w-16 rounded-full bg-khoalan-yellow/10 mx-auto mb-6">
+							<svg class="h-8 w-8 text-khoalan-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+						</div>
+						<h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Uy Tín & Chất Lượng</h3>
+						<p class="text-gray-600 text-center">Chúng tôi chỉ cung cấp các sản phẩm tôn chính hãng từ Tôn Đông Á, Tôn Hoa Sen, Sắt Sendo và Sắt Hòa Phát. Tất cả được chế tạo tỉ mỉ và đã qua kiểm định chất lượng nghiêm ngặt.</p>
+					</div>
+
+					<div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 fade-in-up" style="transition-delay: 0.1s;">
+						<div class="flex items-center justify-center h-16 w-16 rounded-full bg-khoalan-yellow/10 mx-auto mb-6">
+							<svg class="h-8 w-8 text-khoalan-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 21-3-3m0 0a5.5 5.5 0 1 0-7.78-7.78 5.5 5.5 0 0 0 7.78 7.78Z"/></svg>
+						</div>
+						<h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Dịch Vụ Chuyên Nghiệp</h3>
+						<p class="text-gray-600 text-center">Đội ngũ tư vấn tận tình, hỗ trợ khách hàng chọn sản phẩm phù hợp với nhu cầu và ngân sách một cách chuyên nghiệp nhất.</p>
+					</div>
+
+					<div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 fade-in-up" style="transition-delay: 0.2s;">
+						<div class="flex items-center justify-center h-16 w-16 rounded-full bg-khoalan-yellow/10 mx-auto mb-6">
+							<svg class="h-8 w-8 text-khoalan-yellow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+						</div>
+						<h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Giá Cả Cạnh Tranh</h3>
+						<p class="text-gray-600 text-center">Chúng tôi luôn cam kết mức giá tốt nhất cho khách hàng mà không ảnh hưởng đến chất lượng sản phẩm.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services Section -->
+		<section class="py-16 lg:py-24 bg-white">
+			<div class="container mx-auto px-4 lg:px-8">
+				<div class="text-center max-w-3xl mx-auto mb-12">
+					<span class="text-khoalan-yellow font-bold uppercase">Dịch Vụ Của Chúng Tôi</span>
+					<h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mt-2">Giải Pháp Toàn Diện</h2>
+				</div>
+				
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group fade-in-up">
+						<div class="overflow-hidden h-56">
+							<img src="https://placehold.co/600x400/4ade80/ffffff?text=Thi+Công+Sắt" alt="Thi công sắt nhà kính" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+						</div>
+						<div class="p-6">
+							<h3 class="text-xl font-bold text-gray-800 mb-2">Thi công – lắp đặt sắt nhà kính</h3>
+							<p class="text-gray-600">Chuyên thi công và lắp đặt hệ thống sắt cho nhà kính với chất lượng cao, đảm bảo độ bền và thẩm mỹ.</p>
+						</div>
+					</div>
+					
+					<div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group fade-in-up" style="transition-delay: 0.1s;">
+						<div class="overflow-hidden h-56">
+							<img src="https://placehold.co/600x400/3b82f6/ffffff?text=Mái+Vòm" alt="Mái vòm tôn" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+						</div>
+						<div class="p-6">
+							<h3 class="text-xl font-bold text-gray-800 mb-2">Thi công nhà mái vòm bằng tôn</h3>
+							<p class="text-gray-600">Thiết kế và thi công các công trình mái vòm hiện đại, bền đẹp với công nghệ tiên tiến.</p>
+						</div>
+					</div>
+					
+					<div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 group fade-in-up" style="transition-delay: 0.2s;">
+						<div class="overflow-hidden h-56">
+							<img src="https://placehold.co/600x400/f59e0b/ffffff?text=Cung+Cấp+Vật+Liệu" alt="Cung cấp tôn sắt thép" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+						</div>
+						<div class="p-6">
+							<h3 class="text-xl font-bold text-gray-800 mb-2">Cung cấp tôn sắt thép</h3>
+							<p class="text-gray-600">Cung cấp đầy đủ các loại tôn, sắt thép chính hãng với giá cả cạnh tranh nhất thị trường.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Vision & Mission -->
+		<section class="py-16 lg:py-24 bg-gray-50">
+			<div class="container mx-auto px-4 lg:px-8">
+				<div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+					<div class="bg-white p-8 lg:p-12 rounded-lg shadow-lg fade-in-up">
+						<div class="h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-8"></div>
+						<h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">Tầm Nhìn</h2>
+						<p class="text-gray-600 mb-6 leading-relaxed">
+							Công ty Khoa Lan phấn đấu trở thành đơn vị hàng đầu trong lĩnh vực thi công và lắp đặt sắt, tôn tại Việt Nam, cung cấp giải pháp xây dựng hiện đại, bền vững và thẩm mỹ.
+						</p>
+						<p class="text-gray-600 leading-relaxed">
+							Trở thành biểu tượng uy tín trong ngành xây dựng với các sản phẩm sắt và tôn chất lượng cao, góp phần kiến tạo nên những công trình bền vững và đẳng cấp.
+						</p>
+					</div>
+
+					<div class="bg-white p-8 lg:p-12 rounded-lg shadow-lg fade-in-up" style="transition-delay: 0.2s;">
+						<div class="h-2 bg-gradient-to-r from-orange-500 to-pink-600 rounded-full mb-8"></div>
+						<h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-6">Sứ Mệnh</h2>
+						<p class="text-gray-600 mb-6 leading-relaxed">
+							Cung cấp các giải pháp thi công sắt và tôn chất lượng cao, bền vững, đáp ứng nhu cầu đa dạng của khách hàng.
+						</p>
+						<p class="text-gray-600 leading-relaxed">
+							Xây dựng mối quan hệ bền chặt với đối tác và khách hàng thông qua dịch vụ chuyên nghiệp, tận tâm, và giá trị vượt trội.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Team Section -->
+		<section class="py-16 lg:py-24 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
+			<div class="container mx-auto px-4 lg:px-8">
+				<div class="text-center max-w-3xl mx-auto mb-12">
+					<span class="text-yellow-300 font-bold uppercase">Đội Ngũ Chuyên Nghiệp</span>
+					<h2 class="text-3xl lg:text-4xl font-bold mt-2">Những Người Đồng Hành</h2>
+				</div>
+				
+				<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+					<div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center hover:bg-white/20 transition-all duration-300 fade-in-up">
+						<div class="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+							<svg class="h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 21-3-3m0 0a5.5 5.5 0 1 0-7.78-7.78 5.5 5.5 0 0 0 7.78 7.78Z"/></svg>
+						</div>
+						<h3 class="text-lg font-bold mb-2">Chuyên gia Tư vấn</h3>
+						<p class="text-white/80">Đội ngũ tư vấn kinh nghiệm</p>
+					</div>
+					
+					<div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center hover:bg-white/20 transition-all duration-300 fade-in-up" style="transition-delay: 0.1s;">
+						<div class="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+							<svg class="h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+						</div>
+						<h3 class="text-lg font-bold mb-2">Kỹ sư Thi công</h3>
+						<p class="text-white/80">Chuyên gia thi công lắp đặt</p>
+					</div>
+					
+					<div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center hover:bg-white/20 transition-all duration-300 fade-in-up" style="transition-delay: 0.2s;">
+						<div class="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+							<svg class="h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+						</div>
+						<h3 class="text-lg font-bold mb-2">Chăm sóc Khách hàng</h3>
+						<p class="text-white/80">Hỗ trợ khách hàng 24/7</p>
+					</div>
+					
+					<div class="bg-white/10 backdrop-blur-sm p-6 rounded-lg text-center hover:bg-white/20 transition-all duration-300 fade-in-up" style="transition-delay: 0.3s;">
+						<div class="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+							<svg class="h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+						</div>
+						<h3 class="text-lg font-bold mb-2">Kiểm soát Chất lượng</h3>
+						<p class="text-white/80">Đảm bảo tiêu chuẩn cao nhất</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="cta-section-bg text-white">
+			<div class="container mx-auto px-4 lg:px-8 py-16 lg:py-24 text-center">
+				<h2 class="text-3xl lg:text-4xl font-bold mb-4">Sẵn Sàng Hợp Tác Cùng Chúng Tôi?</h2>
+				<p class="max-w-2xl mx-auto text-lg text-gray-300 mb-8">
+					Liên hệ với đội ngũ chuyên gia của Khoa Lan ngay hôm nay để nhận tư vấn và báo giá tốt nhất cho dự án của bạn.
+				</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="tel:0867555211" class="bg-khoalan-yellow text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all shadow-lg inline-flex items-center justify-center space-x-2">
+						<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+						<span>Gọi Ngay: 0867 555 211</span>
+					</a>
+					<a href="/" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-gray-800 transition-all">
+						Về Trang Chủ
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</MainLayout> 
