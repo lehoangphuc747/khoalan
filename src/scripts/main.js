@@ -62,7 +62,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 const el = entry.target;
                 const target = +el.getAttribute('data-counter');
                 let current = 0;
-                const increment = target > 1000 ? target / 200 : 1;
+                
+                // Faster animation for projects counter (1000+)
+                let increment;
+                if (target === 1000) {
+                    increment = target / 50; // Much faster for projects
+                } else if (target > 1000) {
+                    increment = target / 100; // Faster for large numbers
+                } else {
+                    increment = 1; // Normal speed for small numbers
+                }
+                
                 const updateCounter = () => {
                     if (current < target) {
                         current += increment;

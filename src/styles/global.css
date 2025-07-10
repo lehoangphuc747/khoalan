@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     letter-spacing: -0.02em;
     font-weight: 600;
-    color: #1f2937; /* gray-800 */
+    color: #1e40af; /* blue-800 - Better contrast and matches brand */
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 .prose h1 {
     font-size: 2.25rem; /* 36px */
     font-weight: 700;
-    color: #111827; /* gray-900 */
+    color: #1e3a8a; /* blue-900 - Darker blue for main headings */
     margin-top: 0;
     margin-bottom: 1.5rem;
     letter-spacing: -0.025em;
@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
 .prose h2 {
     font-size: 1.875rem; /* 30px */
     font-weight: 600;
-    color: #1f2937; /* gray-800 */
+    color: #1e40af; /* blue-800 - Consistent with other headings */
     margin-top: 2.5rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.5rem;
@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 .prose h3 {
     font-size: 1.5rem; /* 24px */
     font-weight: 600;
-    color: #374151; /* gray-700 */
+    color: #2563eb; /* blue-600 - Lighter blue for h3 */
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
@@ -75,7 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .prose strong {
     font-weight: 600;
-    color: #1f2937; /* gray-800 */
+    color: #1e40af; /* blue-800 - Match headings for emphasis */
 }
 
 .prose em {
@@ -244,17 +244,58 @@ p, span, div {
     border-color: #ffb400;
 }
 .hero-bg {
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3)), url('/background-hero.jpg');
-    background-size: contain;
+    background-image: url('/background-hero.jpg');
+    background-size: 100% 100%;
     background-position: center;
-    background-attachment: fixed;
     background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+}
+
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(75, 85, 99, 0.4);
+    z-index: 1;
+}
+
+.hero-bg > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero Text Styling - Simple Gray Overlay Approach */
+.hero-bg h1 {
+    color: #ffffff;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-bg p {
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.hero-bg .text-khoalan-yellow {
+    color: #ffb400 !important;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(255, 180, 0, 0.3);
 }
 
 /* Tối ưu cho mobile */
 @media (max-width: 768px) {
     .hero-bg {
-        background-attachment: scroll;
+        background-size: 100% 100%;
+        height: 100vh;
     }
 }
 .cta-section-bg {
