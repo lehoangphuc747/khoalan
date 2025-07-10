@@ -304,6 +304,34 @@ p, span, div {
     background-position: center;
     background-attachment: fixed;
 }
+/* Đảm bảo h2 trong CTA luôn màu trắng */
+.cta-section-bg h2 {
+  color: #fff !important;
+}
+/* Đảm bảo heading trong section nền gradient tối luôn trắng */
+.bg-gradient-to-br h2,
+.bg-gradient-to-br h3,
+.bg-gradient-to-br h4,
+.bg-gradient-to-br h5,
+.bg-gradient-to-br h6 {
+  color: #fff !important;
+}
+/* Đảm bảo heading trong section nền gradient xanh luôn trắng */
+.bg-gradient-to-r h2,
+.bg-gradient-to-r h3,
+.bg-gradient-to-r h4,
+.bg-gradient-to-r h5,
+.bg-gradient-to-r h6 {
+  color: #fff !important;
+}
+/* Đảm bảo heading trong section CTA luôn trắng */
+.cta-section-bg h2,
+.cta-section-bg h3,
+.cta-section-bg h4,
+.cta-section-bg h5,
+.cta-section-bg h6 {
+  color: #fff !important;
+}
 .fade-in-up {
     opacity: 0;
     transform: translateY(30px);
